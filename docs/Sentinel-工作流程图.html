@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sentinel — 项目工作流程图</title>
+<title>Sentinel — 项目工作流程图 v2</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
@@ -18,7 +18,6 @@
   h1 { font-size: 24px; font-weight: 700; margin-bottom: 4px; }
   .sub { font-size: 13px; color: #86868b; margin-bottom: 24px; }
   
-  /* Flow section */
   .flow-section { margin-bottom: 28px; }
   .section-title { font-size: 14px; font-weight: 600; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
   .section-title .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
@@ -41,9 +40,7 @@
   .tag-pending { background: #f3f4f6; color: #6b7280; }
   .tag-later { background: #e8e8ed; color: #86868b; }
   .flow-arrow { color: #b0b0b8; font-size: 18px; margin: 0 8px; flex-shrink: 0; }
-  .flow-arrow-down { display: block; text-align: center; color: #b0b0b8; font-size: 14px; margin: 4px 0; }
 
-  /* Team grid */
   .team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 24px; }
   .team-card {
     background: white;
@@ -56,20 +53,17 @@
   .team-card .task { font-size: 11px; color: #86868b; line-height: 1.5; }
   .team-card .dep { font-size: 10px; color: #6b7280; margin-top: 6px; padding-top: 6px; border-top: 1px solid #e8e8ed; }
 
-  /* Dependency lines */
   .dep-section { margin-bottom: 24px; }
   .dep-table { width: 100%; border-collapse: collapse; font-size: 12px; }
   .dep-table td, .dep-table th { padding: 6px 10px; border: 1px solid #e8e8ed; text-align: left; }
   .dep-table th { background: #fafafa; font-weight: 600; color: #86868b; font-size: 11px; }
   .dep-table .arrow { text-align: center; font-size: 14px; }
 
-  /* Status bar */
   .status-bar { display: flex; gap: 16px; margin-bottom: 20px; flex-wrap: wrap; }
   .stat-item { flex: 1; min-width: 100px; background: white; border: 1px solid #d2d2d7; border-radius: 8px; padding: 10px 14px; text-align: center; }
   .stat-item .num { font-size: 20px; font-weight: 700; }
   .stat-item .lbl { font-size: 11px; color: #86868b; }
 
-  /* Timeline */
   .timeline { margin-bottom: 24px; }
   .tl-item { display: flex; align-items: center; gap: 12px; padding: 8px 0; border-bottom: 1px solid #f0f0f0; }
   .tl-item:last-child { border-bottom: none; }
@@ -88,37 +82,39 @@
 <body>
 <div class="container">
 
-<h1>📋 Sentinel 项目工作流程图</h1>
-<p class="sub">运营协调看板 · 谁负责什么 · 怎么串联 · 当前进度</p>
+<h1>📋 Sentinel 项目工作流程图 v2</h1>
+<p class="sub">Week 4 黑客松版 · 运营协调看板 · 谁负责什么 · 怎么串联</p>
 
 <!-- Status -->
 <div class="status-bar">
-  <div class="stat-item"><div class="num" style="color:#166534;">4</div><div class="lbl">已完成 ✅</div></div>
-  <div class="stat-item"><div class="num" style="color:#856404;">3</div><div class="lbl">进行中 ⏳</div></div>
+  <div class="stat-item"><div class="num" style="color:#166534;">5</div><div class="lbl">已完成 ✅</div></div>
+  <div class="stat-item"><div class="num" style="color:#856404;">4</div><div class="lbl">进行中 ⏳</div></div>
   <div class="stat-item"><div class="num" style="color:#6b7280;">6</div><div class="lbl">待开始 ⬜</div></div>
-  <div class="stat-item"><div class="num" style="color:#86868b;">7</div><div class="lbl">后续迭代 📅</div></div>
+  <div class="stat-item"><div class="num" style="color:#86868b;">4</div><div class="lbl">后续迭代 📅</div></div>
 </div>
 
 <!-- Core Flow -->
 <div class="flow-section">
-<div class="section-title"><span class="dot" style="background:#1d1d1f;"></span> 🏗️ 核心工作流（周日 Demo 闭环）</div>
+<div class="section-title"><span class="dot" style="background:#1d1d1f;"></span> 🏗️ 核心架构（Week 4 黑客松版）</div>
 
 <div class="flow-row">
   <div class="flow-card" style="border-left:3px solid #8b5cf6;">
     <div class="name">👤 用户操作</div>
-    <div class="person">打开浏览器 → 输入参数</div>
+    <div class="person">连接钱包 → 选货币对 → 执行交易</div>
   </div>
   <div class="flow-arrow">→</div>
   <div class="flow-card" style="border-left:3px solid #3b82f6;">
     <div class="name">💻 前端页面</div>
     <div class="person">Joy Yu · React + Vite</div>
+    <div class="person">左侧交易面板 | 右侧结果 + AI 分析</div>
     <div class="status"><span class="tag tag-progress">⏳ 开发中</span></div>
   </div>
   <div class="flow-arrow">→</div>
   <div class="flow-card" style="border-left:3px solid #f59e0b;">
     <div class="name">🔧 后端 API</div>
     <div class="person">Boring · Express</div>
-    <div class="status"><span class="tag tag-pending">⬜ 延后到下周</span></div>
+    <div class="person">/quote → /evaluate → /execute → /events</div>
+    <div class="status"><span class="tag tag-progress">⏳ 联调中</span></div>
   </div>
 </div>
 
@@ -127,87 +123,94 @@
     <div class="flow-card" style="border-left:3px solid #10b981;">
       <div class="name">📊 routes.json</div>
       <div class="person">Yu（Dev C）· 模拟数据</div>
-      <div class="status"><span class="tag tag-progress">⏳ 进行中</span></div>
     </div>
     <div class="flow-arrow">→</div>
     <div class="flow-card" style="border-left:3px solid #10b981;">
       <div class="name">🧠 evaluateRoute()</div>
       <div class="person">Zelll（Dev E）· 规则引擎</div>
-      <div class="status"><span class="tag tag-progress">⏳ 学习中/周六前</span></div>
+      <div class="status"><span class="tag tag-progress">⏳ 学习中</span></div>
     </div>
     <div class="flow-arrow">→</div>
-    <div class="flow-card" style="border-left:3px solid #10b981;">
-      <div class="name">⚙️ risk-config.json</div>
-      <div class="person">Ni（Dev B）· 阈值管理</div>
-      <div class="status"><span class="tag tag-pending">⬜ 暂缓</span></div>
+    <div class="flow-card" style="border-left:3px solid #8b5cf6;">
+      <div class="name">🤖 AI 解释层</div>
+      <div class="person">小模型（千问等）· 参数解释</div>
+      <div class="status"><span class="tag tag-pending">⬜ 待评估</span></div>
     </div>
   </div>
   <div class="flow-row">
     <div class="flow-card" style="border-left:3px solid #ef4444;">
-      <div class="name">🔗 VaultExecution 合约</div>
-      <div class="person">Milli（Dev A）· 链上执行</div>
-      <div class="status"><span class="tag tag-progress">⏳ 进行中</span></div>
+      <div class="name">🔗 Monad 测试链</div>
+      <div class="person">Dev 团队 · 部署代币 + 交易池</div>
+      <div class="status"><span class="tag tag-pending">⬜ 待部署</span></div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-card" style="border-left:3px solid #3b82f6;">
+      <div class="name">📈 Dashboard</div>
+      <div class="person">Joy Yu · 评分 + 告警 + 时间线</div>
+      <div class="status"><span class="tag tag-progress">⏳ 开发中</span></div>
     </div>
   </div>
 </div>
 
 <div class="flow-row">
-  <div class="flow-arrow" style="margin-left:20px;">↓</div>
-</div>
-
-<div class="flow-row">
   <div class="flow-card" style="border-left:3px solid #8b5cf6;">
-    <div class="name">✅ Demo 展示</div>
-    <div class="person">77（运营）· 共享屏幕讲解</div>
-    <div class="status"><span class="tag tag-done">✅ Demo Script 已写完</span></div>
+    <div class="name">🏆 Logo + Slogan</div>
+    <div class="person">酷可可 · 方案② 护盾+警戒星</div>
+    <div class="status"><span class="tag tag-progress">⏳ 修改中</span></div>
+  </div>
+  <div class="flow-arrow">→</div>
+  <div class="flow-card" style="border-left:3px solid #8b5cf6;">
+    <div class="name">🎨 浅色/深色主题</div>
+    <div class="person">酷可可配色 · 前端实现切换</div>
+    <div class="status"><span class="tag tag-pending">⬜ 待配色</span></div>
   </div>
 </div>
 </div>
 
 <!-- Team -->
 <div class="flow-section">
-<div class="section-title"><span class="dot" style="background:#3b82f6;"></span> 👥 团队分工</div>
+<div class="section-title"><span class="dot" style="background:#3b82f6;"></span> 👥 团队分工（Week 4）</div>
 <div class="team-grid">
 
 <div class="team-card">
   <div class="role">🎨 设计</div>
   <div class="member">酷可可</div>
-  <div class="task">4 种状态视觉 · NFT勋章 · 架构图</div>
-  <div class="dep">→ 对接 Joy（前端）</div>
+  <div class="task">Logo 方案②修改 · 页面排版 · 浅色/深色配色 · 动态效果设计</div>
+  <div class="dep">→ 对接 Joy（前端）· 提供色号</div>
 </div>
 
 <div class="team-card">
   <div class="role">💻 前端</div>
   <div class="member">Joy Yu</div>
-  <div class="task">React+Vite · 交易输入 · Route对比 · 执行结果 · NFT</div>
+  <div class="task">交易面板 · Dashboard · AI 分析窗口 · 成就页 · 深色/浅色切换</div>
   <div class="dep">← 等设计出图 · → 调 Boring API</div>
 </div>
 
 <div class="team-card">
   <div class="role">🔗 Dev A</div>
   <div class="member">Milli</div>
-  <div class="task">VaultExecution 合约 · 部署脚本</div>
-  <div class="dep">→ 对接 Boring（后端调合约）</div>
+  <div class="task">Monad 测试链合约部署 · 代币 + 交易池</div>
+  <div class="dep">→ 部署测试币 · → 对接 Boring</div>
 </div>
 
 <div class="team-card">
   <div class="role">⚙️ Dev B</div>
   <div class="member">Ni</div>
-  <div class="task">risk-config.json · 阈值管理</div>
-  <div class="dep">→ 辅助群主安全分析 ⏳ → 后续写入配置</div>
+  <div class="task">安全分析 · risk-config.json 阈值</div>
+  <div class="dep">→ 辅助群主安全分析 ⏳ → 后续定阈值</div>
 </div>
 
 <div class="team-card">
   <div class="role">📊 Dev C</div>
   <div class="member">Yu</div>
-  <div class="task">routes.json · 3 条 Route 模拟数据</div>
+  <div class="task">routes.json · 模拟数据 + 测试场景</div>
   <div class="dep">→ 给 Zelll 和 Boring 用</div>
 </div>
 
 <div class="team-card">
   <div class="role">🔧 Dev D</div>
   <div class="member">Boring</div>
-  <div class="task">后端4个API · 事件管理</div>
+  <div class="task">后端 API · Dashboard 接口 · events 时间线</div>
   <div class="dep">← 等 Milli 合约 · 调 Zelll 规则 · → 给前端 API</div>
 </div>
 
@@ -215,13 +218,13 @@
   <div class="role">🧠 Dev E</div>
   <div class="member">Zelll</div>
   <div class="task">evaluateRoute() 规则引擎</div>
-  <div class="dep">← 用 Yu 的数据 · 读 Ni 的配置</div>
+  <div class="dep">← 用 Yu 的数据 · 先写死 if-else</div>
 </div>
 
 <div class="team-card" style="border-color:#8b5cf6;">
   <div class="role">📢 运营/PM</div>
   <div class="member">77</div>
-  <div class="task">产品文档 · Demo脚本 · 进度协调 · 文案</div>
+  <div class="task">Demo 脚本 v2 · 进度协调 · 文案 · 话术</div>
   <div class="dep">→ 协调所有人 · 清阻塞</div>
 </div>
 
@@ -230,27 +233,28 @@
 
 <!-- Dependencies -->
 <div class="flow-section">
-<div class="section-title"><span class="dot" style="background:#ef4444;"></span> 🔗 依赖关系（谁等谁）</div>
+<div class="section-title"><span class="dot" style="background:#ef4444;"></span> 🔗 依赖关系</div>
 <table class="dep-table">
   <tr><th>前置</th><th></th><th>依赖者</th><th>说明</th></tr>
-  <tr><td>酷可可（设计出图）</td><td class="arrow">→</td><td>Joy Yu（前端）</td><td>前端等设计出 UI 后再做页面</td></tr>
-  <tr><td>Yu（routes.json）</td><td class="arrow">→</td><td>Zelll（规则引擎）</td><td>evaluateRoute 需要 route 数据</td></tr>
-  <tr><td>Milli（合约 ABI）</td><td class="arrow">→</td><td>Boring（后端）</td><td>/execute 需要调合约</td></tr>
-  <tr><td>Zelll（evaluateRoute）</td><td class="arrow">→</td><td>Boring（后端）</td><td>/evaluate API 需要调规则引擎</td></tr>
-  <tr><td>Boring（4个API）</td><td class="arrow">→</td><td>Joy Yu（前端）</td><td>前端等 API 才能调通</td></tr>
-  <tr><td style="color:#86868b;">Ni（阈值）</td><td class="arrow" style="color:#86868b;">→</td><td style="color:#86868b;">Zelll（规则引擎）</td><td style="color:#86868b;">⚠️ 暂时硬编码，Ni 的阈值后续再补</td></tr>
+  <tr><td>酷可可（设计出图 + Logo）</td><td class="arrow">→</td><td>Joy Yu（前端）</td><td>等设计出 UI 再做页面</td></tr>
+  <tr><td>酷可可（配色色号）</td><td class="arrow">→</td><td>Joy Yu（前端）</td><td>浅色/深色主题需要颜色值</td></tr>
+  <tr><td>Milli（Monad 测试链合约）</td><td class="arrow">→</td><td>Boring（后端）</td><td>/execute 需要调链上合约</td></tr>
+  <tr><td>Zelll（evaluateRoute）</td><td class="arrow">→</td><td>Boring（后端）</td><td>/evaluate API 调规则引擎</td></tr>
+  <tr><td>Boring（4个API）</td><td class="arrow">→</td><td>Joy Yu（前端）</td><td>前端等 API 调通才能联调</td></tr>
+  <tr><td>Yu（routes.json）</td><td class="arrow">→</td><td>Zelll + Boring</td><td>route 数据供评估使用</td></tr>
+  <tr><td style="color:#86868b;">AI 解释层方案</td><td class="arrow" style="color:#86868b;">→</td><td style="color:#86868b;">前端 + Boring</td><td style="color:#86868b;">⚠️ 待评估是否做，可选</td></tr>
 </table>
 </div>
 
 <!-- Timeline -->
 <div class="flow-section">
-<div class="section-title"><span class="dot" style="background:#f59e0b;"></span> 📅 时间线</div>
+<div class="section-title"><span class="dot" style="background:#f59e0b;"></span> 📅 时间线（Week 4 黑客松）</div>
 <div class="timeline">
-  <div class="tl-item"><span class="day">今天</span><span class="task-text">🧠 脑暴会议 · 定产品方向 · 出 Figma 原型</span><span class="owner">77 + 全队</span></div>
-  <div class="tl-item"><span class="day">明天</span><span class="task-text">🎨 酷可可出 UI · 💻 Joy 前端开发 · 🔗 Dev 写代码</span><span class="owner">各司其职</span></div>
-  <div class="tl-item"><span class="day">周六</span><span class="task-text">🔧 后端联调 · 🧠 Zelll 完成 evaluateRoute · 🎬 录屏准备</span><span class="owner">全员</span></div>
-  <div class="tl-item"><span class="day" style="font-weight:700;">周日</span><span class="task-text" style="font-weight:700;">🎯 Mini Demo！共享屏幕演示核心闭环</span><span class="owner">77 主讲</span></div>
-  <div class="tl-item"><span class="day" style="color:#86868b;">下周</span><span class="task-text" style="color:#86868b;">📅 正式 Demo 准备 · 完善 UI · 接入真实阈值</span><span class="owner">全员</span></div>
+  <div class="tl-item"><span class="day">今晚</span><span class="task-text">🧠 会议定方向 · Logo 选定 ② · UI 排版定稿 · 链上方案确认</span><span class="owner">全队</span></div>
+  <div class="tl-item"><span class="day">明天</span><span class="task-text">🎨 酷可可完成排版 + 配色 · 💻 Joy 前端框架 · 🔗 Milli 部署代币</span><span class="owner">各司其职</span></div>
+  <div class="tl-item"><span class="day">周六</span><span class="task-text">🔧 后端链上联调 · 🧠 Zelll 完成 evaluateRoute · 🎬 录屏准备</span><span class="owner">全员</span></div>
+  <div class="tl-item"><span class="day" style="font-weight:700;">周日</span><span class="task-text" style="font-weight:700;">🎯 内部跑通！全部模块合龙</span><span class="owner">全员</span></div>
+  <div class="tl-item"><span class="day">下周</span><span class="task-text">📅 正式 Demo · 完善 AI 解释 · 接入真实阈值 · 打磨 UI</span><span class="owner">全员</span></div>
 </div>
 </div>
 
@@ -258,13 +262,13 @@
 <div class="flow-section">
 <div class="section-title"><span class="dot" style="background:#8b5cf6;"></span> 📢 运营/PM（77）工作清单</div>
 <div style="background:white;border:1px solid #d2d2d7;border-radius:10px;padding:14px;font-size:13px;line-height:1.8;">
-<div>✅ <strong>已完成：</strong>PRD · 产品框架 · Demo Script · Figma 原型 · Problem Card · README · Agent reason 文案 · 任务表更新 · 进度协调</div>
+<div>✅ <strong>已完成：</strong>PRD · 产品框架 · Demo 脚本 v2 · Figma 原型 · Problem Card · README · Agent reason 文案 · 任务表 · 会议纪要 · 工作流程图</div>
 <div>⏳ <strong>待跟进：</strong>
-  <span style="display:inline-block;margin:4px 8px 0 0;padding:2px 8px;border-radius:4px;background:#fff3cd;font-size:11px;">等 Ni 定阈值 → 确认文案</span>
-  <span style="display:inline-block;margin:4px 8px 0 0;padding:2px 8px;border-radius:4px;background:#fff3cd;font-size:11px;">等 Zelll 出 evaluateRoute → 贴 reason 文案</span>
-  <span style="display:inline-block;margin:4px 8px 0 0;padding:2px 8px;border-radius:4px;background:#fff3cd;font-size:11px;">等 Joy 前端出页面 → 检查文案</span>
+  <span style="display:inline-block;margin:4px 8px 0 0;padding:2px 8px;border-radius:4px;background:#fff3cd;font-size:11px;">等酷可可 Logo 出图 → 群内投票确认</span>
+  <span style="display:inline-block;margin:4px 8px 0 0;padding:2px 8px;border-radius:4px;background:#fff3cd;font-size:11px;">等 Joy 前端出页面 → 检查文案 + 交互</span>
+  <span style="display:inline-block;margin:4px 8px 0 0;padding:2px 8px;border-radius:4px;background:#fff3cd;font-size:11px;">周日内部跑通 → 录屏备份</span>
 </div>
-<div>⚠️ <strong>阻塞项：</strong>无（当前无阻塞，Zelll 周六前做完即可）</div>
+<div>⚠️ <strong>阻塞项：</strong>无</div>
 </div>
 </div>
 
