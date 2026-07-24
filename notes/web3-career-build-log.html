@@ -1,0 +1,2079 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎮 Web3 Career Build — 关卡指南</title>
+<style>
+/* ============================================================
+   PIXEL ART THEME — Fusion Pixel Style
+   Dark: bg #111827 | accent #6B9E7A | text #D4C9B0
+   Light: bg #F0EBE0 | accent #4A7A5A | text #1E2A3A
+============================================================ */
+
+@font-face {
+  font-family: 'PixelFallback';
+  src: local('Courier New'), local('Courier'), local('monospace');
+}
+
+:root[data-theme="dark"] {
+  --bg: #111827;
+  --bg2: #1a2535;
+  --bg3: #243040;
+  --accent: #6B9E7A;
+  --accent2: #4a7a5a;
+  --text: #D4C9B0;
+  --text2: #9ca3af;
+  --border: #2d3f55;
+  --card: #1a2535;
+  --card2: #243040;
+  --tag-bg: #243040;
+  --shadow: rgba(0,0,0,0.5);
+  --week1: #5a7e6a;
+  --week2: #6a6a9e;
+  --week3: #9e6a5a;
+  --done: #6B9E7A;
+  --todo: #4a5568;
+  --progress-bg: #243040;
+  --btn: #6B9E7A;
+  --btn-text: #111827;
+  --link: #8bbfa0;
+  --callout-bg: #1f3028;
+  --table-head: #243040;
+  --table-row: #1a2535;
+  --table-alt: #1f2d3d;
+  --input-bg: #243040;
+  --tip-bg: #1f2d3d;
+  --tip-border: #4a7a5a;
+}
+
+:root[data-theme="light"] {
+  --bg: #F0EBE0;
+  --bg2: #E8E0D0;
+  --bg3: #ddd5c2;
+  --accent: #4A7A5A;
+  --accent2: #3a6a4a;
+  --text: #1E2A3A;
+  --text2: #5a6a7a;
+  --border: #c8bfaa;
+  --card: #f7f2e8;
+  --card2: #ede5d5;
+  --tag-bg: #e0d8c8;
+  --shadow: rgba(0,0,0,0.12);
+  --week1: #4a7a5a;
+  --week2: #5a5a8a;
+  --week3: #8a5a4a;
+  --done: #4A7A5A;
+  --todo: #9ca3af;
+  --progress-bg: #ddd5c2;
+  --btn: #4A7A5A;
+  --btn-text: #F0EBE0;
+  --link: #3a6a4a;
+  --callout-bg: #e0ede5;
+  --table-head: #ddd5c2;
+  --table-row: #f7f2e8;
+  --table-alt: #ede5d5;
+  --input-bg: #ede5d5;
+  --tip-bg: #e8f0ea;
+  --tip-border: #4A7A5A;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Courier New', 'Noto Sans SC', monospace;
+  font-size: 12px;
+  line-height: 1.7;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* === PIXEL BG PATTERN === */
+.pixel-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.045;
+}
+
+[data-theme="light"] .pixel-bg { opacity: 0.06; }
+
+/* === SCROLLBAR === */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); image-rendering: pixelated; }
+
+/* === PIXEL BORDER UTILITY === */
+.px-border {
+  border: 2px solid var(--border);
+  box-shadow: 4px 4px 0 var(--shadow);
+}
+.px-border-accent {
+  border: 2px solid var(--accent);
+  box-shadow: 4px 4px 0 var(--accent2);
+}
+
+/* === LAYOUT === */
+.container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 16px 80px;
+  position: relative;
+  z-index: 1;
+}
+
+/* === HEADER === */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--bg);
+  border-bottom: 2px solid var(--border);
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.site-title {
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+  color: var(--accent);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.theme-btn {
+  background: var(--bg3);
+  border: 2px solid var(--border);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 10px;
+  padding: 4px 10px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  transition: none;
+  image-rendering: pixelated;
+}
+.theme-btn:hover {
+  background: var(--accent);
+  color: var(--btn-text);
+  border-color: var(--accent2);
+}
+
+.hud-bar {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.hud-item {
+  font-size: 10px;
+  color: var(--text2);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.hud-dot { width: 6px; height: 6px; background: var(--accent); display: inline-block; }
+
+/* === HERO === */
+.hero {
+  padding: 32px 0 20px;
+  text-align: left;
+}
+.hero-tag {
+  display: inline-block;
+  background: var(--tag-bg);
+  border: 1px solid var(--border);
+  font-size: 10px;
+  padding: 2px 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text2);
+  margin-bottom: 10px;
+}
+.hero-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--text);
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  margin-bottom: 6px;
+}
+.hero-title span { color: var(--accent); }
+.hero-sub {
+  font-size: 11px;
+  color: var(--text2);
+  max-width: 520px;
+  line-height: 1.6;
+}
+
+/* === PIXEL ILLUSTRATION BANNER === */
+.illus-banner {
+  width: 100%;
+  height: 80px;
+  margin: 12px 0;
+  position: relative;
+  overflow: hidden;
+  border: 2px solid var(--border);
+  background: var(--bg2);
+}
+
+/* === PROGRESS HUD === */
+.progress-hud {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin: 16px 0;
+}
+.progress-card {
+  background: var(--card);
+  border: 2px solid var(--border);
+  box-shadow: 3px 3px 0 var(--shadow);
+  padding: 10px 12px;
+}
+.progress-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text2);
+  margin-bottom: 6px;
+}
+.progress-bar-wrap {
+  background: var(--progress-bg);
+  height: 8px;
+  border: 1px solid var(--border);
+  position: relative;
+  margin-bottom: 4px;
+  image-rendering: pixelated;
+}
+.progress-bar-fill {
+  height: 100%;
+  transition: width 0.5s;
+}
+.w1-fill { background: var(--week1); }
+.w2-fill { background: var(--week2); }
+.w3-fill { background: var(--week3); }
+.progress-pct { font-size: 10px; color: var(--accent); }
+
+/* === WEEK OVERVIEW TABLE === */
+.overview-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0;
+  font-size: 11px;
+}
+.overview-table th {
+  background: var(--table-head);
+  color: var(--text2);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 10px;
+  padding: 6px 8px;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+.overview-table td {
+  padding: 5px 8px;
+  border: 1px solid var(--border);
+  vertical-align: top;
+}
+.overview-table tr:nth-child(odd) td { background: var(--table-row); }
+.overview-table tr:nth-child(even) td { background: var(--table-alt); }
+.overview-table tr:hover td { border-color: var(--accent); }
+
+.status-badge {
+  display: inline-block;
+  font-size: 9px;
+  padding: 1px 5px;
+  border: 1px solid;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+.badge-done { color: var(--done); border-color: var(--done); background: rgba(107,158,122,0.1); }
+.badge-todo { color: var(--todo); border-color: var(--border); }
+
+/* === LEVEL CARD (Week collapsible) === */
+.level-card {
+  margin: 20px 0;
+  border: 2px solid var(--border);
+  box-shadow: 4px 4px 0 var(--shadow);
+  background: var(--card);
+}
+
+.level-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  cursor: pointer;
+  user-select: none;
+  border-bottom: 2px solid var(--border);
+  transition: background 0.15s;
+}
+.level-header:hover { background: var(--bg3); }
+
+.level-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.level-num {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text2);
+  border: 1px solid var(--border);
+  padding: 1px 6px;
+  background: var(--bg3);
+}
+.level-title-text {
+  font-size: 15px;
+  font-weight: bold;
+  color: var(--text);
+}
+.level-sub {
+  font-size: 10px;
+  color: var(--text2);
+  margin-top: 1px;
+}
+
+.level-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.level-pts {
+  font-size: 10px;
+  color: var(--accent);
+  border: 1px solid var(--accent2);
+  padding: 2px 8px;
+  background: rgba(107,158,122,0.08);
+}
+.toggle-icon {
+  font-size: 12px;
+  color: var(--text2);
+  transition: transform 0.2s;
+  width: 16px;
+  text-align: center;
+}
+.level-card.open .toggle-icon { transform: rotate(180deg); }
+
+.level-body {
+  display: none;
+  padding: 0;
+}
+.level-card.open .level-body { display: block; }
+
+.level-w1 .level-header { border-left: 4px solid var(--week1); }
+.level-w2 .level-header { border-left: 4px solid var(--week2); }
+.level-w3 .level-header { border-left: 4px solid var(--week3); }
+
+/* === DAY SECTION === */
+.day-section {
+  border-bottom: 1px solid var(--border);
+  padding: 16px;
+}
+.day-section:last-child { border-bottom: none; }
+
+.day-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  user-select: none;
+}
+.day-badge {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 2px 6px;
+  border: 1px solid;
+  white-space: nowrap;
+}
+.day-badge-w1 { color: var(--week1); border-color: var(--week1); background: rgba(90,126,106,0.08); }
+.day-badge-w2 { color: var(--week2); border-color: var(--week2); background: rgba(106,106,158,0.08); }
+.day-badge-w3 { color: var(--week3); border-color: var(--week3); background: rgba(158,106,90,0.08); }
+
+.day-title { font-size: 13px; font-weight: bold; color: var(--text); }
+.day-toggle { font-size: 10px; color: var(--text2); margin-left: auto; }
+
+.day-body { display: block; }
+.day-section.collapsed .day-body { display: none; }
+.day-section.collapsed .day-toggle::before { content: '▶ 展开'; }
+.day-section:not(.collapsed) .day-toggle::before { content: '▼ 收起'; }
+
+/* === SECTION BLOCKS === */
+.block-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text2);
+  margin: 12px 0 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.block-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* === CALLOUT === */
+.callout {
+  background: var(--callout-bg);
+  border-left: 3px solid var(--accent);
+  padding: 10px 14px;
+  margin: 10px 0;
+  font-size: 11px;
+  color: var(--text);
+}
+.callout.red-bg {
+  background: rgba(158,90,90,0.1);
+  border-left-color: #9e5a5a;
+}
+.callout-icon { margin-right: 6px; }
+
+/* === TIP BOX === */
+.tip-box {
+  background: var(--tip-bg);
+  border: 1px solid var(--tip-border);
+  border-left: 3px solid var(--accent);
+  padding: 8px 12px;
+  margin: 8px 0;
+  font-size: 11px;
+  color: var(--text2);
+}
+.tip-box strong { color: var(--accent); }
+
+/* === CHECKLIST === */
+.checklist { list-style: none; margin: 6px 0; }
+.checklist li {
+  font-size: 11px;
+  padding: 3px 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  color: var(--text);
+}
+.px-check {
+  width: 12px;
+  height: 12px;
+  border: 2px solid var(--border);
+  display: inline-block;
+  flex-shrink: 0;
+  margin-top: 2px;
+  cursor: pointer;
+  background: var(--bg3);
+  image-rendering: pixelated;
+}
+.px-check.checked {
+  background: var(--accent);
+  border-color: var(--accent2);
+}
+.px-check.checked::after {
+  content: '✓';
+  display: block;
+  font-size: 8px;
+  text-align: center;
+  color: var(--btn-text);
+  line-height: 10px;
+  font-weight: bold;
+}
+
+/* === POINTS BADGE === */
+.pts {
+  display: inline-block;
+  font-size: 9px;
+  padding: 1px 5px;
+  background: rgba(107,158,122,0.12);
+  border: 1px solid var(--accent2);
+  color: var(--accent);
+  margin-left: 4px;
+  vertical-align: middle;
+}
+
+/* === RESOURCE LIST === */
+.resource-list { list-style: none; margin: 6px 0; }
+.resource-list li {
+  font-size: 11px;
+  padding: 2px 0;
+  color: var(--text2);
+}
+.resource-list a {
+  color: var(--link);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+.resource-list a:hover {
+  border-bottom-color: var(--link);
+}
+.resource-sub {
+  font-size: 10px;
+  color: var(--text2);
+  padding: 1px 0 1px 12px;
+  opacity: 0.85;
+}
+
+/* === ROLE TABS === */
+.role-tabs {
+  display: flex;
+  gap: 0;
+  margin: 10px 0 0;
+  border-bottom: 2px solid var(--border);
+}
+.role-tab {
+  font-size: 10px;
+  padding: 5px 12px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  border-bottom: none;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text2);
+  background: transparent;
+  font-family: inherit;
+  transition: none;
+  margin-bottom: -2px;
+}
+.role-tab:hover { color: var(--text); }
+.role-tab.active {
+  border-color: var(--border);
+  border-bottom-color: var(--card2);
+  background: var(--card2);
+  color: var(--accent);
+}
+.role-panel { display: none; padding: 10px 0; }
+.role-panel.active { display: block; }
+
+/* === EDITABLE AREA === */
+.edit-area {
+  width: 100%;
+  background: var(--input-bg);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 11px;
+  padding: 8px;
+  resize: vertical;
+  min-height: 60px;
+  line-height: 1.6;
+  outline: none;
+  margin-top: 4px;
+}
+.edit-area:focus { border-color: var(--accent); }
+.edit-area::placeholder { color: var(--text2); opacity: 0.7; }
+
+/* === CODE BLOCK === */
+.code-block {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent2);
+  padding: 10px 12px;
+  font-size: 10px;
+  color: var(--text2);
+  overflow-x: auto;
+  margin: 8px 0;
+  white-space: pre;
+}
+
+/* === TABLE === */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 10px;
+  margin: 8px 0;
+}
+.data-table th {
+  background: var(--table-head);
+  color: var(--text2);
+  padding: 5px 7px;
+  border: 1px solid var(--border);
+  text-align: left;
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+.data-table td {
+  padding: 4px 7px;
+  border: 1px solid var(--border);
+  vertical-align: top;
+  font-size: 10px;
+}
+.data-table tr:nth-child(odd) td { background: var(--table-row); }
+.data-table tr:nth-child(even) td { background: var(--table-alt); }
+
+/* === CARD TEMPLATE === */
+.card-template {
+  background: var(--card2);
+  border: 1px solid var(--border);
+  padding: 10px 12px;
+  margin: 8px 0;
+  font-size: 11px;
+}
+.card-field {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  padding: 3px 0;
+  border-bottom: 1px dashed var(--border);
+}
+.card-field:last-child { border-bottom: none; }
+.card-key {
+  color: var(--text2);
+  font-size: 10px;
+  min-width: 140px;
+  flex-shrink: 0;
+  padding-top: 2px;
+}
+.card-val {
+  flex: 1;
+  color: var(--text);
+  font-size: 11px;
+}
+
+/* === PIXEL DIVIDER === */
+.px-divider {
+  height: 2px;
+  background: repeating-linear-gradient(90deg, var(--border) 0, var(--border) 4px, transparent 4px, transparent 8px);
+  margin: 16px 0;
+}
+
+/* === WEEK OVERVIEW === */
+.week-goals {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  padding: 10px 14px;
+  margin: 12px 0;
+  font-size: 11px;
+}
+.week-goal-item {
+  padding: 2px 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+}
+.week-goal-icon { color: var(--accent); flex-shrink: 0; }
+
+/* === SECTION HEADER (within day) === */
+.sec-head {
+  font-size: 12px;
+  font-weight: bold;
+  color: var(--text);
+  margin: 14px 0 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.sec-head::before {
+  content: '▌';
+  color: var(--accent);
+  font-size: 10px;
+}
+
+/* === BODY TEXT === */
+.body-text {
+  font-size: 11px;
+  color: var(--text);
+  line-height: 1.7;
+  margin: 4px 0;
+}
+.body-text a { color: var(--link); text-decoration: none; }
+.body-text a:hover { text-decoration: underline; }
+.body-text strong { color: var(--accent); font-weight: bold; }
+
+/* === OVERALL FOOTER === */
+.site-footer {
+  text-align: center;
+  padding: 24px 0;
+  font-size: 10px;
+  color: var(--text2);
+  border-top: 1px dashed var(--border);
+  margin-top: 32px;
+}
+
+/* === PIXEL BADGE FOR ROLES === */
+.role-badge {
+  display: inline-block;
+  font-size: 9px;
+  padding: 2px 6px;
+  border: 1px solid;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 2px 2px 0 0;
+}
+.research { color: #7a9e6a; border-color: #7a9e6a; background: rgba(122,158,106,0.08); }
+.ops { color: #9e7a6a; border-color: #9e7a6a; background: rgba(158,122,106,0.08); }
+.dev { color: #6a7a9e; border-color: #6a7a9e; background: rgba(106,122,158,0.08); }
+.all { color: var(--text2); border-color: var(--border); }
+
+/* === EXPANDABLE DAY ANIMATION === */
+.day-body { animation: fadeIn 0.2s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
+
+/* === MINI PIXEL ART AVATAR === */
+.pixel-art-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+  font-size: 10px;
+  color: var(--text2);
+}
+
+/* === SCROLLTOP BTN === */
+.scroll-top {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: var(--bg3);
+  border: 2px solid var(--accent);
+  color: var(--accent);
+  font-family: inherit;
+  font-size: 10px;
+  padding: 6px 10px;
+  cursor: pointer;
+  z-index: 200;
+  box-shadow: 3px 3px 0 var(--shadow);
+}
+.scroll-top:hover { background: var(--accent); color: var(--btn-text); }
+
+/* === LEVEL MAP (top nav) === */
+.level-map {
+  display: flex;
+  gap: 0;
+  margin: 12px 0;
+  border: 2px solid var(--border);
+  overflow: hidden;
+}
+.map-node {
+  flex: 1;
+  padding: 8px 4px;
+  text-align: center;
+  cursor: pointer;
+  border-right: 2px solid var(--border);
+  background: var(--bg2);
+  transition: background 0.15s;
+  font-size: 10px;
+  color: var(--text2);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.map-node:last-child { border-right: none; }
+.map-node:hover { background: var(--bg3); }
+.map-node.w1 { border-top: 3px solid var(--week1); }
+.map-node.w2 { border-top: 3px solid var(--week2); }
+.map-node.w3 { border-top: 3px solid var(--week3); }
+.map-node.demo { border-top: 3px solid var(--accent); }
+.map-icon { font-size: 14px; display: block; margin-bottom: 2px; }
+
+/* === RESPONSIVE === */
+@media (max-width: 600px) {
+  .progress-hud { grid-template-columns: 1fr; }
+  .hero-title { font-size: 18px; }
+  .level-title-text { font-size: 13px; }
+}
+</style>
+</head>
+<body>
+
+<!-- PIXEL BG SVG -->
+<svg class="pixel-bg" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<pattern id="pgrid" width="32" height="32" patternUnits="userSpaceOnUse">
+  <!-- Chain links -->
+  <rect x="4" y="4" width="2" height="6" fill="currentColor"/>
+  <rect x="2" y="6" width="6" height="2" fill="currentColor"/>
+  <rect x="3" y="12" width="2" height="2" fill="currentColor"/>
+  <!-- Hex dot -->
+  <rect x="20" y="8" width="2" height="2" fill="currentColor"/>
+  <rect x="18" y="10" width="2" height="2" fill="currentColor"/>
+  <rect x="22" y="10" width="2" height="2" fill="currentColor"/>
+  <rect x="18" y="12" width="2" height="2" fill="currentColor"/>
+  <rect x="22" y="12" width="2" height="2" fill="currentColor"/>
+  <rect x="20" y="14" width="2" height="2" fill="currentColor"/>
+  <!-- Star -->
+  <rect x="10" y="22" width="2" height="2" fill="currentColor"/>
+  <rect x="8" y="20" width="6" height="2" fill="currentColor"/>
+  <rect x="8" y="24" width="6" height="2" fill="currentColor"/>
+  <rect x="10" y="18" width="2" height="2" fill="currentColor"/>
+  <rect x="10" y="26" width="2" height="2" fill="currentColor"/>
+  <!-- Pixel block -->
+  <rect x="24" y="22" width="4" height="4" fill="currentColor"/>
+  <rect x="25" y="23" width="2" height="2" fill="var(--bg)" opacity="0.5"/>
+</pattern>
+</defs>
+<rect width="100%" height="100%" fill="url(#pgrid)" color="var(--accent)"/>
+</svg>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="site-title">
+    <span>🎮</span>
+    <span>Web3 Career Build</span>
+    <span style="font-size:9px;color:var(--text2);font-weight:normal">| 关卡指南 v1.0</span>
+  </div>
+  <div class="header-actions">
+    <div class="hud-bar">
+      <div class="hud-item"><span class="hud-dot"></span> Week 1</div>
+      <div class="hud-item"><span class="hud-dot" style="background:var(--week2)"></span> Week 2</div>
+      <div class="hud-item"><span class="hud-dot" style="background:var(--week3)"></span> Week 3</div>
+    </div>
+    <button class="theme-btn" onclick="toggleTheme()">☀ / ☾ 切换</button>
+  </div>
+</header>
+
+<div class="container">
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">🔗 Web3 Summer Internship Program · 2026</div>
+  <div class="hero-title">🚀 <span>Web3 Career Build</span><br>— 暑期关卡手册</div>
+  <div class="hero-sub">这是你的 Web3 暑期实习计划总控台。所有每日任务、学习记录、Proof of Work 和资源链接都汇聚在这里。从上到下按天推进，完成后在对应位置打卡 ✅。</div>
+</div>
+
+<!-- PIXEL ILLUSTRATION BANNER -->
+<div class="illus-banner">
+<svg width="100%" height="80" xmlns="http://www.w3.org/2000/svg" style="display:block">
+  <defs>
+    <linearGradient id="bg-grad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="var(--bg2)"/>
+      <stop offset="1" stop-color="var(--bg3)"/>
+    </linearGradient>
+  </defs>
+  <rect width="100%" height="80" fill="url(#bg-grad)"/>
+  <!-- Ground -->
+  <rect x="0" y="64" width="100%" height="4" fill="var(--accent2)" opacity="0.4"/>
+  <rect x="0" y="68" width="100%" height="12" fill="var(--accent2)" opacity="0.15"/>
+  <!-- Pixel character 1 (researcher) -->
+  <g transform="translate(60,36)" opacity="0.7">
+    <rect x="2" y="0" width="8" height="6" fill="var(--text2)"/>
+    <rect x="0" y="6" width="12" height="8" fill="var(--accent)"/>
+    <rect x="0" y="14" width="4" height="8" fill="var(--accent2)"/>
+    <rect x="8" y="14" width="4" height="8" fill="var(--accent2)"/>
+    <rect x="4" y="8" width="2" height="2" fill="var(--bg)"/>
+    <rect x="6" y="8" width="2" height="2" fill="var(--bg)"/>
+  </g>
+  <!-- Pixel character 2 (ops) -->
+  <g transform="translate(110,38)" opacity="0.65">
+    <rect x="2" y="0" width="8" height="6" fill="#9e7a6a" opacity="0.8"/>
+    <rect x="0" y="6" width="12" height="8" fill="#9e7a6a" opacity="0.6"/>
+    <rect x="0" y="14" width="4" height="8" fill="var(--bg3)"/>
+    <rect x="8" y="14" width="4" height="8" fill="var(--bg3)"/>
+    <rect x="3" y="9" width="2" height="2" fill="var(--bg)"/>
+    <rect x="7" y="9" width="2" height="2" fill="var(--bg)"/>
+  </g>
+  <!-- Pixel character 3 (dev) -->
+  <g transform="translate(160,34)" opacity="0.65">
+    <rect x="2" y="0" width="8" height="6" fill="#6a7a9e" opacity="0.8"/>
+    <rect x="0" y="6" width="12" height="10" fill="#6a7a9e" opacity="0.6"/>
+    <rect x="0" y="16" width="4" height="8" fill="var(--bg3)"/>
+    <rect x="8" y="16" width="4" height="8" fill="var(--bg3)"/>
+    <rect x="3" y="9" width="2" height="2" fill="var(--bg)"/>
+    <rect x="7" y="9" width="2" height="2" fill="var(--bg)"/>
+    <!-- laptop -->
+    <rect x="14" y="12" width="12" height="8" fill="var(--bg)"/>
+    <rect x="15" y="13" width="10" height="6" fill="var(--bg2)"/>
+    <rect x="13" y="20" width="14" height="2" fill="var(--border)"/>
+  </g>
+  <!-- Blockchain nodes -->
+  <g opacity="0.3">
+    <rect x="240" y="20" width="8" height="8" fill="var(--accent)"/>
+    <rect x="270" y="30" width="8" height="8" fill="var(--accent)"/>
+    <rect x="300" y="18" width="8" height="8" fill="var(--accent)"/>
+    <rect x="244" y="24" width="26" height="2" fill="var(--accent)"/>
+    <rect x="278" y="26" width="2" height="6" fill="var(--accent)"/>
+    <rect x="278" y="22" width="22" height="2" fill="var(--accent)"/>
+  </g>
+  <!-- Stars -->
+  <rect x="340" y="10" width="2" height="2" fill="var(--text2)" opacity="0.4"/>
+  <rect x="380" y="20" width="2" height="2" fill="var(--text2)" opacity="0.4"/>
+  <rect x="420" y="8" width="2" height="2" fill="var(--text2)" opacity="0.4"/>
+  <rect x="460" y="25" width="2" height="2" fill="var(--text2)" opacity="0.4"/>
+  <!-- Title text pixels -->
+  <text x="500" y="38" font-family="Courier New, monospace" font-size="11" fill="var(--accent)" opacity="0.5">LEVEL SELECT</text>
+  <text x="500" y="52" font-family="Courier New, monospace" font-size="9" fill="var(--text2)" opacity="0.4">3 WEEKS · 15 DAYS · ∞ XP</text>
+</svg>
+</div>
+
+<!-- LEVEL MAP -->
+<div class="level-map">
+  <div class="map-node w1" onclick="scrollToWeek('week1')">
+    <span class="map-icon">🗺️</span>
+    WEEK 1
+    <div style="font-size:9px;margin-top:2px;color:var(--week1)">入门</div>
+  </div>
+  <div class="map-node w2" onclick="scrollToWeek('week2')">
+    <span class="map-icon">⚔️</span>
+    WEEK 2
+    <div style="font-size:9px;margin-top:2px;color:var(--week2)">分路</div>
+  </div>
+  <div class="map-node w3" onclick="scrollToWeek('week3')">
+    <span class="map-icon">🛡️</span>
+    WEEK 3
+    <div style="font-size:9px;margin-top:2px;color:var(--week3)">组队</div>
+  </div>
+  <div class="map-node demo" onclick="scrollToWeek('demo')">
+    <span class="map-icon">🏆</span>
+    DEMO
+    <div style="font-size:9px;margin-top:2px;color:var(--accent)">展示</div>
+  </div>
+</div>
+
+<!-- PROGRESS HUD -->
+<div class="progress-hud">
+  <div class="progress-card">
+    <div class="progress-label">🗺 Week 1 — 入门世界</div>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill w1-fill" style="width:0%" id="p1"></div></div>
+    <div class="progress-pct" id="p1t">0 / 5 天完成</div>
+  </div>
+  <div class="progress-card">
+    <div class="progress-label">⚔ Week 2 — 分路修炼</div>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill w2-fill" style="width:0%" id="p2"></div></div>
+    <div class="progress-pct" id="p2t">0 / 5 天完成</div>
+  </div>
+  <div class="progress-card">
+    <div class="progress-label">🛡 Week 3 — 组队冒险</div>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill w3-fill" style="width:0%" id="p3"></div></div>
+    <div class="progress-pct" id="p3t">0 / 5 天完成</div>
+  </div>
+</div>
+
+<!-- WEEK 1 OVERVIEW TABLE -->
+<div class="block-label">📌 Week 1 总览</div>
+<table class="overview-table">
+<thead><tr><th>Day</th><th>主题</th><th>核心产出</th><th>状态</th></tr></thead>
+<tbody>
+<tr><td>Day 1</td><td>Web3 入门 & 开营</td><td>建立 Build Log，写下「我为什么进入链上世界」</td><td><span class="status-badge badge-todo">⬜ 未开始</span></td></tr>
+<tr><td>Day 2</td><td>工具准备 & Builder 身份</td><td>完成工具账号注册，发布第一条 Co-learning 记录</td><td><span class="status-badge badge-todo">⬜ 未开始</span></td></tr>
+<tr><td>Day 3</td><td>钱包、安全 & 测试网交易</td><td>截图第一笔测试网交易 tx hash</td><td><span class="status-badge badge-todo">⬜ 未开始</span></td></tr>
+<tr><td>Day 4</td><td>AI + Solidity + 合约部署</td><td>Remix 部署截图 + 合约地址</td><td><span class="status-badge badge-todo">⬜ 未开始</span></td></tr>
+<tr><td>Day 5</td><td>Monad 理解 & Mini Demo 0</td><td>提交 Build Log + 选定 Week 2 方向</td><td><span class="status-badge badge-todo">⬜ 未开始</span></td></tr>
+</tbody>
+</table>
+
+<!-- ============================================================ -->
+<!--                    WEEK 1 LEVEL CARD                         -->
+<!-- ============================================================ -->
+<div class="level-card level-w1 open" id="week1">
+  <div class="level-header" onclick="toggleLevel(this)">
+    <div class="level-meta">
+      <div class="level-num">LEVEL 1</div>
+      <div>
+        <div class="level-title-text">🗺 Week 1 — Web3 入门 & 开营</div>
+        <div class="level-sub">5 天 · 建立链上身份 · 完成首笔测试网交易 · 部署第一个合约</div>
+      </div>
+    </div>
+    <div class="level-right">
+      <div class="level-pts">XP × 5 天</div>
+      <div class="toggle-icon">▼</div>
+    </div>
+  </div>
+  <div class="level-body">
+
+    <!-- DAY 1 -->
+    <div class="day-section" id="w1d1">
+      <div class="day-header" onclick="toggleDay(this)">
+        <span class="day-badge day-badge-w1">DAY 1</span>
+        <span class="day-title">Web3 入门 & 开营</span>
+        <span class="day-toggle"></span>
+      </div>
+      <div class="day-body">
+
+        <div class="sec-head">🎯 学习目标</div>
+        <ul class="checklist">
+          <li><span class="px-check" onclick="checkThis(this)"></span> 理解 Web3、区块链、以太坊、钱包、地址、交易、gas、智能合约基础概念</li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> 完成开营内容，明确本周 Proof of Work 清单</li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> 建立本 Build Log 页面（已完成 ✅）</li>
+        </ul>
+
+        <div class="sec-head">📖 学习内容</div>
+        <div class="body-text"><strong>1. Web3 实习手册｜入门导读</strong></div>
+        <ul class="resource-list">
+          <li>• <a href="https://web3intern.xyz/zh/" target="_blank">Web3 实习手册</a></li>
+          <li>• <a href="https://web3intern.xyz/zh/preface/" target="_blank">前言 / 入门导读</a></li>
+          <li>• <a href="https://web3intern.xyz/zh/blockchain-basic/" target="_blank">区块链基础概念</a></li>
+          <li>• <a href="https://web3intern.xyz/zh/overview-of-ethereum/" target="_blank">以太坊概览</a></li>
+        </ul>
+        <div class="body-text" style="margin-top:8px"><strong>2. BuildAnything Freshman</strong></div>
+        <ul class="resource-list">
+          <li>• <a href="https://buildanything.so/zh/tracks/freshman/lessons/introduction-to-vibecoding" target="_blank">Vibecoding 入门</a></li>
+          <li>• 为什么要构建去中心化应用？</li>
+          <li>• 重要的区块链概念</li>
+          <li>• <a href="https://buildanything.so/zh/tracks/freshman" target="_blank">Freshman Track</a></li>
+        </ul>
+
+        <div class="sec-head">🧠 概念速记</div>
+        <div class="tip-box">✏️ 用自己的话写下对以下概念的理解，不需要标准答案。</div>
+        <div class="card-template">
+          <div class="card-field"><span class="card-key">Web3 是什么</span><textarea class="edit-area" style="height:36px" placeholder="（在此填写）"></textarea></div>
+          <div class="card-field"><span class="card-key">区块链 / Blockchain</span><textarea class="edit-area" style="height:36px" placeholder="（在此填写）"></textarea></div>
+          <div class="card-field"><span class="card-key">以太坊 / Ethereum</span><textarea class="edit-area" style="height:36px" placeholder="（在此填写）"></textarea></div>
+          <div class="card-field"><span class="card-key">钱包 / Wallet</span><textarea class="edit-area" style="height:36px" placeholder="（在此填写）"></textarea></div>
+          <div class="card-field"><span class="card-key">Gas</span><textarea class="edit-area" style="height:36px" placeholder="（在此填写）"></textarea></div>
+          <div class="card-field"><span class="card-key">智能合约</span><textarea class="edit-area" style="height:36px" placeholder="（在此填写）"></textarea></div>
+        </div>
+
+        <div class="sec-head">📝 我为什么进入链上世界？</div>
+        <textarea class="edit-area" style="height:80px" placeholder="这是你的开营宣言，写下你的真实动机——可以是好奇、职业规划、对去中心化的信仰，或者只是想学点新东西。100 字左右即可。"></textarea>
+
+        <div class="sec-head">📸 截图 / 链接 / 其他记录</div>
+        <textarea class="edit-area" style="height:60px" placeholder="粘贴今天的截图链接、参考链接、有用的 Prompt 等……"></textarea>
+      </div>
+    </div><!-- /day1 -->
+
+    <!-- DAY 2 -->
+    <div class="day-section" id="w1d2">
+      <div class="day-header" onclick="toggleDay(this)">
+        <span class="day-badge day-badge-w1">DAY 2</span>
+        <span class="day-title">工具准备 & Builder 身份</span>
+        <span class="day-toggle"></span>
+      </div>
+      <div class="day-body">
+        <div class="sec-head">🎯 学习目标</div>
+        <ul class="checklist">
+          <li><span class="px-check" onclick="checkThis(this)"></span> 完成 Web3 常用工具安装和账号注册</li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> 理解 DevRel / Builder / 生态连接者的角色区别</li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> 发布第一条公开或半公开的 Co-learning 记录</li>
+        </ul>
+        <div class="sec-head">✅ 工具清单</div>
+        <ul class="checklist">
+          <li><span class="px-check" onclick="checkThis(this)"></span> <a href="https://x.com/" target="_blank">X / Twitter</a> 账号准备好</li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> <a href="https://desktop.telegram.org/" target="_blank">Telegram</a> 安装完成</li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> <a href="https://discord.com/" target="_blank">Discord</a> 账号准备好</li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> <a href="https://github.com/" target="_blank">GitHub</a> 账号准备好</li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> Notion / Google Docs 可用 ✅</li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> AI Coding 工具选择（Cursor / Claude Code 等）</li>
+        </ul>
+        <div class="sec-head">📚 参考资源</div>
+        <ul class="resource-list">
+          <li>• <a href="https://web3intern.xyz/zh/remote-work-guide/" target="_blank">Web3 工作方式 / 工具安装指南</a></li>
+          <li>• <a href="https://web3intern.xyz/zh/position-introduction/" target="_blank">岗位全景图</a></li>
+        </ul>
+        <div class="sec-head">📝 今日 Co-learning 记录</div>
+        <textarea class="edit-area" style="height:80px" placeholder="写一段 100–200 字的今日学习总结，可以发到 X / Twitter 或 Discord 作为 Proof of Work……"></textarea>
+        <div class="sec-head">📸 截图 / 链接 / 其他记录</div>
+        <textarea class="edit-area" style="height:60px" placeholder="（在此处粘贴内容……）"></textarea>
+      </div>
+    </div><!-- /day2 -->
+
+    <!-- DAY 3 -->
+    <div class="day-section" id="w1d3">
+      <div class="day-header" onclick="toggleDay(this)">
+        <span class="day-badge day-badge-w1">DAY 3</span>
+        <span class="day-title">钱包、安全 & 第一笔测试网交易</span>
+        <span class="day-toggle"></span>
+      </div>
+      <div class="day-body">
+        <div class="sec-head">🎯 学习目标</div>
+        <ul class="checklist">
+          <li><span class="px-check" onclick="checkThis(this)"></span> 创建课程专用钱包（不使用主力钱包）</li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> 添加 Monad Testnet 网络</li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> 领取测试币并完成一笔测试网交易</li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> 在 Block Explorer 中查看并理解 transaction hash</li>
+        </ul>
+        <div class="callout red-bg"><span class="callout-icon">⚠️</span><strong>助记词安全规则</strong>：助记词只写在纸上保管，绝不截图、不上传、不粘贴到任何数字设备或平台。课程专用钱包与主力钱包严格分离。</div>
+        <div class="sec-head">📋 实操步骤清单</div>
+        <ul class="checklist">
+          <li><span class="px-check" onclick="checkThis(this)"></span> 安装 MetaMask（或其他 EVM 兼容钱包）</li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> 创建课程专用钱包地址</li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> 离线备份助记词（纸笔）</li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> <a href="https://docs.monad.xyz/developer-essentials/testnets" target="_blank">添加 Monad Testnet</a></li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> 领取测试币（Faucet）</li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> 完成一次转账或测试网 DApp 交互</li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> <a href="https://docs.monad.xyz/tooling-and-infra/block-explorers" target="_blank">在 Block Explorer 查看 tx hash</a></li>
+        </ul>
+        <div class="sec-head">🔍 交易解读</div>
+        <div class="card-template">
+          <div class="card-field"><span class="card-key">课程钱包地址</span><textarea class="edit-area" style="height:28px" placeholder="0x…"></textarea></div>
+          <div class="card-field"><span class="card-key">第一笔交易 Hash</span><textarea class="edit-area" style="height:28px" placeholder="0x…"></textarea></div>
+          <div class="card-field"><span class="card-key">Gas Fee 含义</span><textarea class="edit-area" style="height:36px" placeholder="（填写）"></textarea></div>
+        </div>
+        <div class="sec-head">📚 参考资源</div>
+        <ul class="resource-list">
+          <li>• <a href="https://web3intern.xyz/zh/security/" target="_blank">Web3 实习手册 — 安全与合规</a></li>
+          <li>• <a href="https://ethereum.org/en/wallets/" target="_blank">Ethereum 钱包基础</a></li>
+          <li>• <a href="https://ethereum.org/en/developers/docs/transactions/" target="_blank">交易机制</a></li>
+          <li>• <a href="https://docs.monad.xyz/" target="_blank">Monad Docs</a></li>
+        </ul>
+        <div class="sec-head">📸 截图 / 链接 / 其他记录</div>
+        <textarea class="edit-area" style="height:60px" placeholder="粘贴 tx hash 截图、explorer 截图等……"></textarea>
+      </div>
+    </div><!-- /day3 -->
+
+    <!-- DAY 4 -->
+    <div class="day-section" id="w1d4">
+      <div class="day-header" onclick="toggleDay(this)">
+        <span class="day-badge day-badge-w1">DAY 4</span>
+        <span class="day-title">AI + Solidity + 合约部署</span>
+        <span class="day-toggle"></span>
+      </div>
+      <div class="day-body">
+        <div class="sec-head">🎯 学习目标</div>
+        <ul class="checklist">
+          <li><span class="px-check" onclick="checkThis(this)"></span> 用 AI 生成一个最小 Solidity 合约（要读懂、验证、不盲信）</li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> 在 Remix IDE 中编译、检查并部署合约</li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> 理解合约地址、ABI、read/write function、tx hash 的关系</li>
+        </ul>
+        <div class="sec-head">🤖 AI 协作记录</div>
+        <div class="card-template">
+          <div class="card-field"><span class="card-key">使用的 AI 工具</span><textarea class="edit-area" style="height:28px" placeholder="（Claude Sonnet / GPT-4o / DeepSeek V3 等）"></textarea></div>
+          <div class="card-field"><span class="card-key">Prompt 原文</span><textarea class="edit-area" style="height:60px" placeholder="（粘贴你的 Prompt）"></textarea></div>
+          <div class="card-field"><span class="card-key">AI 生成合约</span><textarea class="edit-area" style="height:80px" placeholder="// 粘贴合约代码"></textarea></div>
+          <div class="card-field"><span class="card-key">发现的问题 / 修改点</span><textarea class="edit-area" style="height:40px" placeholder="（填写）"></textarea></div>
+        </div>
+        <div class="sec-head">📋 部署记录</div>
+        <div class="card-template">
+          <div class="card-field"><span class="card-key">网络</span><span class="card-val">Monad Testnet</span></div>
+          <div class="card-field"><span class="card-key">合约地址</span><textarea class="edit-area" style="height:28px" placeholder="0x…"></textarea></div>
+          <div class="card-field"><span class="card-key">部署 tx hash</span><textarea class="edit-area" style="height:28px" placeholder="0x…"></textarea></div>
+        </div>
+        <div class="sec-head">📚 参考资源</div>
+        <ul class="resource-list">
+          <li>• <a href="https://docs.soliditylang.org/" target="_blank">Solidity 文档</a></li>
+          <li>• <a href="https://remix.ethereum.org/" target="_blank">Remix IDE</a></li>
+          <li>• <a href="https://docs.monad.xyz/guides/deploy-smart-contract/remix" target="_blank">Monad Remix 部署指南</a></li>
+          <li>• <a href="https://docs.openzeppelin.com/contracts/" target="_blank">OpenZeppelin Contracts</a></li>
+        </ul>
+        <div class="sec-head">📸 截图 / 链接 / 其他记录</div>
+        <textarea class="edit-area" style="height:60px" placeholder="Remix 编译截图、部署截图……"></textarea>
+      </div>
+    </div><!-- /day4 -->
+
+    <!-- DAY 5 -->
+    <div class="day-section" id="w1d5">
+      <div class="day-header" onclick="toggleDay(this)">
+        <span class="day-badge day-badge-w1">DAY 5</span>
+        <span class="day-title">Monad 理解 & Mini Demo 0</span>
+        <span class="day-toggle"></span>
+      </div>
+      <div class="day-body">
+        <div class="sec-head">🎯 学习目标</div>
+        <ul class="checklist">
+          <li><span class="px-check" onclick="checkThis(this)"></span> 理解 Monad 相比 Ethereum 的核心差异（不只是"更快"）</li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> 整理 Week 1 Build Log，形成完整记录</li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> 提交 Mini Demo 0</li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> 确定 Week 2 主方向：Research / Ops / Dev</li>
+        </ul>
+        <div class="sec-head">🧠 Monad 深度理解</div>
+        <div class="card-template">
+          <div class="card-field"><span class="card-key">Monad vs Ethereum 最关键差异</span><textarea class="edit-area" style="height:50px" placeholder="（填写）"></textarea></div>
+          <div class="card-field"><span class="card-key">10,000 TPS 让哪类应用成为可能？</span><textarea class="edit-area" style="height:50px" placeholder="举 2–3 个例子……"></textarea></div>
+        </div>
+        <div class="sec-head">📝 Mini Demo 0 草稿</div>
+        <textarea class="edit-area" style="height:100px" placeholder="你做了什么 → 遇到了什么挑战 → 如何解决的 → 收获和下一步（200–500 字）"></textarea>
+        <div class="sec-head">🧭 Week 2 方向选择</div>
+        <ul class="checklist">
+          <li><span class="px-check" onclick="checkThis(this)"></span> <span class="role-badge research">Research</span> 继续深入协议分析、产品研究、生态机会</li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> <span class="role-badge ops">Ops</span> 社区运营、内容创作、活动策划</li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> <span class="role-badge dev">Dev</span> Solidity、合约安全、DApp 开发</li>
+        </ul>
+        <div class="sec-head">📚 参考资源</div>
+        <ul class="resource-list">
+          <li>• <a href="https://docs.monad.xyz/developer-essentials/differences" target="_blank">Monad vs Ethereum 差异</a></li>
+          <li>• <a href="https://docs.monad.xyz/developer-essentials/best-practices" target="_blank">高性能 App 最佳实践</a></li>
+        </ul>
+        <div class="sec-head">📸 截图 / 链接 / 其他记录</div>
+        <textarea class="edit-area" style="height:60px" placeholder="Mini Demo 0 提交链接、截图等……"></textarea>
+      </div>
+    </div><!-- /day5 -->
+
+    <!-- W1 PROOF OF WORK -->
+    <div class="day-section">
+      <div class="sec-head" style="margin:0 0 8px">🏆 Week 1 Proof of Work 汇总</div>
+      <div class="card-template">
+        <div class="card-field"><span class="card-key">Day 1</span><textarea class="edit-area" style="height:28px" placeholder="Build Log 截图 / 开营宣言链接"></textarea></div>
+        <div class="card-field"><span class="card-key">Day 2</span><textarea class="edit-area" style="height:28px" placeholder="工具清单截图 / Co-learning 帖子链接"></textarea></div>
+        <div class="card-field"><span class="card-key">Day 3</span><textarea class="edit-area" style="height:28px" placeholder="钱包地址 + tx hash 截图"></textarea></div>
+        <div class="card-field"><span class="card-key">Day 4</span><textarea class="edit-area" style="height:28px" placeholder="合约地址 + Remix 截图"></textarea></div>
+        <div class="card-field"><span class="card-key">Day 5</span><textarea class="edit-area" style="height:28px" placeholder="Mini Demo 0 提交链接 + Week 2 方向声明"></textarea></div>
+      </div>
+    </div>
+
+  </div><!-- /level-body w1 -->
+</div><!-- /level-card w1 -->
+
+<div class="px-divider"></div>
+
+<!-- ============================================================ -->
+<!--                    WEEK 2 LEVEL CARD                         -->
+<!-- ============================================================ -->
+<div class="level-card level-w2" id="week2">
+  <div class="level-header" onclick="toggleLevel(this)">
+    <div class="level-meta">
+      <div class="level-num">LEVEL 2</div>
+      <div>
+        <div class="level-title-text">⚔️ Week 2 — Builder Track Split</div>
+        <div class="level-sub">职业方向选择 + 分路径学习 · Research / Ops / Dev</div>
+      </div>
+    </div>
+    <div class="level-right">
+      <div class="level-pts" style="color:var(--week2);border-color:var(--week2)">XP × 5 天</div>
+      <div class="toggle-icon">▼</div>
+    </div>
+  </div>
+  <div class="level-body">
+
+    <div style="padding:12px 16px 0">
+      <div class="callout">
+        <span class="callout-icon">🧭</span>
+        Week 2 的目标不是让所有人做同一种任务，而是帮助每位 Builder 在 Research / Ops / Dev 三条路径中选择一个主方向，完成一份可验证的 Proof of Work，并为 Week 3 组队准备清晰的角色定位。
+      </div>
+      <div class="week-goals">
+        <div style="font-size:10px;text-transform:uppercase;letter-spacing:0.08em;color:var(--text2);margin-bottom:6px">第二周结束后，你将能够：</div>
+        <div class="week-goal-item"><span class="week-goal-icon">🎯</span> 找到适合自己的 Web3 职业方向（Research / Ops / Dev）</div>
+        <div class="week-goal-item"><span class="week-goal-icon">🤖</span> 学会使用 AI 协助研究、运营或开发，而不是只会聊天</div>
+        <div class="week-goal-item"><span class="week-goal-icon">📚</span> 独立阅读 Web3 协议文档，并快速理解一个项目</div>
+        <div class="week-goal-item"><span class="week-goal-icon">🛠</span> 完成一份属于自己的 Proof of Work（研究、运营方案或 Demo）</div>
+        <div class="week-goal-item"><span class="week-goal-icon">👥</span> 带着作品集进入 Week 3，与其他 Builder 组队完成真实项目</div>
+      </div>
+      <table class="overview-table">
+        <thead><tr><th>Day</th><th>主题</th><th>核心产出</th><th>状态</th></tr></thead>
+        <tbody>
+          <tr><td>Day 1</td><td>职业方向选择</td><td>Role Choice Card + AI Collaboration Log</td><td><span class="status-badge badge-todo">⬜ 未开始</span></td></tr>
+          <tr><td>Day 2</td><td>路径启动</td><td>Research Question Card / Space Brief / Dev Plan</td><td><span class="status-badge badge-todo">⬜ 未开始</span></td></tr>
+          <tr><td>Day 3</td><td>路径深入</td><td>EIP Reading Card / Run of Show / Code Skeleton</td><td><span class="status-badge badge-todo">⬜ 未开始</span></td></tr>
+          <tr><td>Day 4</td><td>路径产出</td><td>Product Brief / Space 执行预案 / Prototype Evidence</td><td><span class="status-badge badge-todo">⬜ 未开始</span></td></tr>
+          <tr><td>Day 5</td><td>路径收束</td><td>Portfolio Pack + Week 3 Role Statement</td><td><span class="status-badge badge-todo">⬜ 未开始</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- W2 DAY 1 -->
+    <div class="day-section" id="w2d1">
+      <div class="day-header" onclick="toggleDay(this)">
+        <span class="day-badge day-badge-w2">DAY 1</span>
+        <span class="day-title">职业方向选择：Research / Ops / Dev？</span>
+        <span class="day-toggle"></span>
+      </div>
+      <div class="day-body">
+        <div class="sec-head">🎯 学习目标</div>
+        <ul class="checklist">
+          <li><span class="px-check" onclick="checkThis(this)"></span> 理解 Research / Ops / Dev 三类角色分别解决什么问题</li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> 根据兴趣、能力、时间和 Week 3 组队目标，选择一个主职业方向</li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> 建立 Week 2 Role Log</li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> 完成第一次 AI Collaboration Log</li>
+        </ul>
+        <div class="sec-head">📖 学习内容</div>
+        <div class="body-text">一个完整的 Web3 产品或项目通常需要三类 Builder 共同协作：</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:8px 0">
+          <div style="background:rgba(122,158,106,0.08);border:1px solid rgba(122,158,106,0.3);padding:8px;font-size:10px">
+            <div class="role-badge research" style="margin-bottom:4px">Research</div><br>
+            发现问题，理解协议、产品、治理、生态机会和风险
+          </div>
+          <div style="background:rgba(158,122,106,0.08);border:1px solid rgba(158,122,106,0.3);padding:8px;font-size:10px">
+            <div class="role-badge ops" style="margin-bottom:4px">Ops</div><br>
+            连接用户，设计社区运营、Space / 活动策划、传播执行和反馈复盘
+          </div>
+          <div style="background:rgba(106,122,158,0.08);border:1px solid rgba(106,122,158,0.3);padding:8px;font-size:10px">
+            <div class="role-badge dev" style="margin-bottom:4px">Dev</div><br>
+            解决问题，把需求变成可运行的原型、工具、合约、脚本或 Agent 能力
+          </div>
+        </div>
+        <div class="sec-head">🃏 Role Choice Card</div>
+        <div class="card-template">
+          <div class="card-field"><span class="card-key">我选择的方向</span><textarea class="edit-area" style="height:28px" placeholder="Research / Ops / Dev（三选一）"></textarea></div>
+          <div class="card-field"><span class="card-key">选择理由</span><textarea class="edit-area" style="height:50px" placeholder="（填写）"></textarea></div>
+          <div class="card-field"><span class="card-key">本周最小可交付产出</span><textarea class="edit-area" style="height:40px" placeholder="（填写）"></textarea></div>
+          <div class="card-field"><span class="card-key">Week 3 可承担的角色</span><textarea class="edit-area" style="height:36px" placeholder="（填写）"></textarea></div>
+        </div>
+        <div class="sec-head">📚 推荐资料</div>
+        <div class="role-tabs">
+          <button class="role-tab active" onclick="switchTab(this,'all-res-w2d1')">🌍 通用</button>
+          <button class="role-tab" onclick="switchTab(this,'research-res-w2d1')">🔍 Research</button>
+          <button class="role-tab" onclick="switchTab(this,'ops-res-w2d1')">🚀 Ops</button>
+          <button class="role-tab" onclick="switchTab(this,'dev-res-w2d1')">💻 Dev</button>
+        </div>
+        <div id="all-res-w2d1" class="role-panel active">
+          <ul class="resource-list">
+            <li>• <a href="https://web3intern.xyz/zh/" target="_blank">Web3 Career — 岗位与成长路径</a></li>
+            <li>• <a href="https://roadmap.sh/" target="_blank">Developer Roadmaps</a></li>
+            <li>• <a href="https://www.developerreport.com/" target="_blank">Electric Capital Developer Report</a></li>
+            <li>• <a href="https://ethereum.org/" target="_blank">Ethereum.org</a></li>
+          </ul>
+        </div>
+        <div id="research-res-w2d1" class="role-panel">
+          <ul class="resource-list">
+            <li>• <a href="https://docs.monad.xyz/" target="_blank">Monad Docs</a> · <a href="https://forum.monad.xyz/" target="_blank">Monad Forum</a></li>
+            <li>• <a href="https://ethereum-magicians.org/" target="_blank">Ethereum Magicians</a> · <a href="https://eips.ethereum.org/" target="_blank">Ethereum EIPs</a></li>
+            <li>• <a href="https://messari.io/research" target="_blank">Messari Research</a> · <a href="https://www.paradigm.xyz/writing" target="_blank">Paradigm Research</a></li>
+            <li>• <a href="https://defillama.com/" target="_blank">DeFiLlama</a> · <a href="https://dune.com/" target="_blank">Dune</a></li>
+          </ul>
+        </div>
+        <div id="ops-res-w2d1" class="role-panel">
+          <ul class="resource-list">
+            <li>• <a href="https://web3intern.xyz/zh/" target="_blank">Web3 实习手册｜社区运营指南</a></li>
+            <li>• <a href="https://warpcast.com/" target="_blank">Farcaster</a> · <a href="https://lu.ma/" target="_blank">Luma</a></li>
+            <li>• <a href="https://github.com/sparanoid/chinese-copywriting-guidelines" target="_blank">中文排版规范</a></li>
+            <li>• <a href="https://www.figma.com/" target="_blank">Figma</a> · <a href="https://www.canva.com/" target="_blank">Canva</a></li>
+          </ul>
+        </div>
+        <div id="dev-res-w2d1" class="role-panel">
+          <ul class="resource-list">
+            <li>• <a href="https://docs.monad.xyz/" target="_blank">Monad Developer Docs</a> · <a href="https://docs.soliditylang.org/" target="_blank">Solidity Docs</a></li>
+            <li>• <a href="https://remix.ethereum.org/" target="_blank">Remix IDE</a> · <a href="https://book.getfoundry.sh/" target="_blank">Foundry Book</a></li>
+            <li>• <a href="https://docs.cursor.com/" target="_blank">Cursor Docs</a> · <a href="https://chatgpt.com/" target="_blank">ChatGPT</a></li>
+            <li>• <a href="https://github.com/nishuzumi/moss" target="_blank">Moss Repository（Bonus）</a></li>
+          </ul>
+        </div>
+        <div class="sec-head">🛠 今日任务</div>
+        <ul class="checklist">
+          <li><span class="px-check" onclick="checkThis(this)"></span> 任务 1｜Role Choice Card <span class="pts">+10 XP</span></li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> 任务 2｜Week 2 Role Log：建立本周学习记录 <span class="pts">+10 XP</span></li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> 任务 3｜AI Collaboration Log：提交一次 AI 协作记录 <span class="pts">+20 XP</span></li>
+        </ul>
+        <div class="sec-head">🤖 AI Collaboration Log</div>
+        <div class="card-template">
+          <div class="card-field"><span class="card-key">使用的 AI 工具</span><textarea class="edit-area" style="height:28px" placeholder="（填写）"></textarea></div>
+          <div class="card-field"><span class="card-key">AI 帮了什么</span><textarea class="edit-area" style="height:50px" placeholder="（填写）"></textarea></div>
+          <div class="card-field"><span class="card-key">人类核查 / 删改了什么</span><textarea class="edit-area" style="height:50px" placeholder="（填写）"></textarea></div>
+          <div class="card-field"><span class="card-key">不能交给 AI 的判断</span><textarea class="edit-area" style="height:40px" placeholder="（填写）"></textarea></div>
+        </div>
+        <div class="sec-head">📸 截图 / 链接 / 其他记录</div>
+        <textarea class="edit-area" style="height:60px" placeholder="（在此处粘贴内容……）"></textarea>
+      </div>
+    </div><!-- /w2d1 -->
+
+    <!-- W2 DAY 2-5 collapsed by default -->
+    <div class="day-section collapsed" id="w2d2">
+      <div class="day-header" onclick="toggleDay(this)">
+        <span class="day-badge day-badge-w2">DAY 2</span>
+        <span class="day-title">路径启动：把职业方向变成可执行 Scope</span>
+        <span class="day-toggle"></span>
+      </div>
+      <div class="day-body">
+        <div class="sec-head">🎯 学习目标</div>
+        <ul class="checklist">
+          <li><span class="px-check" onclick="checkThis(this)"></span> <span class="role-badge research">Research</span> 学习如何提出一个好的 Research Question，明确资料边界</li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> <span class="role-badge ops">Ops</span> 学习如何定义一场基础 Space / AMA / 小型线上活动</li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> <span class="role-badge dev">Dev</span> 学习如何定义一个 AI-assisted MVP，控制开发 Scope</li>
+        </ul>
+        <div class="sec-head">📖 学习内容</div>
+        <div class="role-tabs">
+          <button class="role-tab active" onclick="switchTab(this,'r-w2d2')">🔍 Research</button>
+          <button class="role-tab" onclick="switchTab(this,'o-w2d2')">🚀 Ops</button>
+          <button class="role-tab" onclick="switchTab(this,'d-w2d2')">💻 Dev</button>
+        </div>
+        <div id="r-w2d2" class="role-panel active">
+          <ul class="resource-list">
+            <li>• Research Track 采用"两条线"：一个任务专门读 EIP / MIP，其他任务研究真实产品 / 协议</li>
+            <li>• 从 DefiLlama Top TVL 协议、Uniswap / Morpho / Pendle 等选择研究对象</li>
+            <li>• 写清研究问题、资料来源、产品分类、核心机制和想回答的用户 / 产品问题</li>
+            <li>• 区分事实、数据、假设、推断和个人判断</li>
+          </ul>
+        </div>
+        <div id="o-w2d2" class="role-panel">
+          <div class="body-text">Day 2 的 Ops 重点是"把一个活动想清楚"，需要定义：</div>
+          <ul class="resource-list">
+            <li>• 活动目标：为什么要做这场 Space？</li>
+            <li>• 目标听众：面向新人、开发者还是研究者？</li>
+            <li>• 核心主题：一句话说清，避免标题很大但讨论发散</li>
+            <li>• 关键动作：希望听众完成什么动作？</li>
+            <li>• 基础闭环：预热 → 参与 → 互动 → 反馈 → 复盘</li>
+          </ul>
+        </div>
+        <div id="d-w2d2" class="role-panel">
+          <ul class="resource-list">
+            <li>• 定义一个 AI-assisted Web3 Prototype（自己设计或参与 Moss Open Source Challenge）</li>
+            <li>• 写清 Scope、Architecture、Tech Stack、真实实现 / mock / 本周不做的边界</li>
+          </ul>
+        </div>
+        <div class="sec-head">🛠 今日任务</div>
+        <ul class="checklist">
+          <li><span class="px-check" onclick="checkThis(this)"></span> <span class="role-badge research">Research</span> 任务 5｜Product Research Question Card：选研究对象，写清问题和至少 5 个来源 <span class="pts">+10 XP</span></li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> <span class="role-badge ops">Ops</span> 任务 10｜Space / 小型活动策划 Brief <span class="pts">+20 XP</span></li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> <span class="role-badge dev">Dev</span> 任务 15｜AI-assisted Dev Plan：定义最小 Web3 原型 <span class="pts">+20 XP</span></li>
+        </ul>
+        <div class="sec-head">📝 路径产出区</div>
+        <div class="card-template">
+          <div class="card-field"><span class="card-key">选择的路径</span><textarea class="edit-area" style="height:28px" placeholder="Research / Ops / Dev"></textarea></div>
+          <div class="card-field"><span class="card-key">今日核心产出</span><textarea class="edit-area" style="height:80px" placeholder="（填写你的 Research Question Card / Space Brief / Dev Plan）"></textarea></div>
+        </div>
+        <div class="sec-head">📸 截图 / 链接 / 其他记录</div>
+        <textarea class="edit-area" style="height:60px" placeholder="（在此处粘贴内容……）"></textarea>
+      </div>
+    </div>
+
+    <div class="day-section collapsed" id="w2d3">
+      <div class="day-header" onclick="toggleDay(this)">
+        <span class="day-badge day-badge-w2">DAY 3</span>
+        <span class="day-title">路径深入：学习本方向真正的 Workflow</span>
+        <span class="day-toggle"></span>
+      </div>
+      <div class="day-body">
+        <div class="sec-head">🎯 学习目标</div>
+        <ul class="checklist">
+          <li><span class="px-check" onclick="checkThis(this)"></span> <span class="role-badge research">Research</span> 学习如何阅读一个 EIP / MIP，拆解真实产品 / 协议</li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> <span class="role-badge ops">Ops</span> 学习如何把 Space 主题拆成议程、问题线、嘉宾沟通和宣传内容</li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> <span class="role-badge dev">Dev</span> 学习 AI Coding Workflow，理解开源项目的协作方式</li>
+        </ul>
+        <div class="sec-head">🚀 Ops：Space Run of Show 模板</div>
+        <div class="code-block">0–3 min  ｜ 开场：介绍活动主题、适合人群、互动方式
+3–8 min  ｜ 嘉宾 / 主持介绍
+8–25 min ｜ 核心问题 1–2：从基础背景进入
+25–45 min｜ 核心问题 3–5：实践建议、工具、案例
+45–55 min｜ 听众互动
+55–60 min｜ 收尾 CTA：入群、提交作业、报名 Week 3</div>
+        <div class="sec-head">🛠 今日任务</div>
+        <ul class="checklist">
+          <li><span class="px-check" onclick="checkThis(this)"></span> <span class="role-badge research">Research</span> 任务 6｜EIP / MIP Reading Card <span class="pts">+20 XP</span></li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> <span class="role-badge research">Research</span> 任务 7｜Product / Protocol Reading Card <span class="pts">+30 XP</span></li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> <span class="role-badge ops">Ops</span> 任务 11｜Space Agenda & Run of Show <span class="pts">+20 XP</span></li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> <span class="role-badge dev">Dev</span> 任务 16｜文档到代码骨架 <span class="pts">+30 XP</span></li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> <span class="role-badge dev">Dev Bonus</span> Moss Issue / Documentation / Draft PR <span class="pts">+10～20 XP</span></li>
+        </ul>
+        <div class="sec-head">📝 路径产出区</div>
+        <textarea class="edit-area" style="height:120px" placeholder="EIP Reading Card / Space Agenda / Code Skeleton……（在此填写或粘贴链接）"></textarea>
+        <div class="sec-head">📸 截图 / 链接 / 其他记录</div>
+        <textarea class="edit-area" style="height:60px" placeholder="（在此处粘贴内容……）"></textarea>
+      </div>
+    </div>
+
+    <div class="day-section collapsed" id="w2d4">
+      <div class="day-header" onclick="toggleDay(this)">
+        <span class="day-badge day-badge-w2">DAY 4</span>
+        <span class="day-title">路径产出：完成第一个 Proof of Work</span>
+        <span class="day-toggle"></span>
+      </div>
+      <div class="day-body">
+        <div class="sec-head">🎯 学习目标</div>
+        <ul class="checklist">
+          <li><span class="px-check" onclick="checkThis(this)"></span> <span class="role-badge research">Research</span> 从提案 / 产品阅读走向自己的产品与市场判断</li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> <span class="role-badge ops">Ops</span> 把 Space 策划变成可执行的活动运营方案</li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> <span class="role-badge dev">Dev</span> 推进原型或开源贡献，形成可检查证据</li>
+        </ul>
+        <div class="sec-head">🛠 今日任务</div>
+        <ul class="checklist">
+          <li><span class="px-check" onclick="checkThis(this)"></span> <span class="role-badge research">Research</span> 任务 8｜Product-to-Market Brief <span class="pts">+40 XP</span></li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> <span class="role-badge ops">Ops</span> 任务 12｜Space 执行预案 <span class="pts">+40 XP</span></li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> <span class="role-badge ops">Ops</span> 任务 13｜反馈与复盘框架设计 <span class="pts">+30 XP</span></li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> <span class="role-badge dev">Dev</span> 任务 17｜Prototype Evidence（repo / README / 截图 / tx hash）<span class="pts">+40 XP</span></li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> <span class="role-badge dev">Dev Bonus</span> Moss Contribution <span class="pts">+10～50 XP</span></li>
+        </ul>
+        <div class="sec-head">📝 路径产出区</div>
+        <div class="card-template">
+          <div class="card-field"><span class="card-key">产品 / 研究对象</span><textarea class="edit-area" style="height:28px" placeholder="（填写）"></textarea></div>
+          <div class="card-field"><span class="card-key">核心产出摘要</span><textarea class="edit-area" style="height:80px" placeholder="（填写或链接）"></textarea></div>
+          <div class="card-field"><span class="card-key">Repo / 截图链接</span><textarea class="edit-area" style="height:28px" placeholder="（填写）"></textarea></div>
+        </div>
+        <div class="sec-head">📸 截图 / 链接 / 其他记录</div>
+        <textarea class="edit-area" style="height:60px" placeholder="（在此处粘贴内容……）"></textarea>
+      </div>
+    </div>
+
+    <div class="day-section collapsed" id="w2d5">
+      <div class="day-header" onclick="toggleDay(this)">
+        <span class="day-badge day-badge-w2">DAY 5</span>
+        <span class="day-title">路径收束：整理成 Week 3 可组队 Portfolio</span>
+        <span class="day-toggle"></span>
+      </div>
+      <div class="day-body">
+        <div class="sec-head">🎯 学习目标</div>
+        <ul class="checklist">
+          <li><span class="px-check" onclick="checkThis(this)"></span> 把 Week 2 的学习、任务、证据和反思整理成可展示的 Portfolio Pack</li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> 准备进入 Week 3 组队，明确自己能承担的角色和需要的队友</li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> 将 AI Collaboration Log 与人工判断记录纳入作品集</li>
+        </ul>
+        <div class="sec-head">🛠 今日任务</div>
+        <ul class="checklist">
+          <li><span class="px-check" onclick="checkThis(this)"></span> 任务 4｜Week 3 Role Statement（100–300 字）<span class="pts">+20 XP</span></li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> <span class="role-badge research">Research</span> 任务 9｜Research Portfolio Pack <span class="pts">+50 XP</span></li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> <span class="role-badge ops">Ops</span> 任务 14｜Ops Portfolio Pack <span class="pts">+50 XP</span></li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> <span class="role-badge dev">Dev</span> 任务 18｜Dev Portfolio Pack <span class="pts">+50 XP</span></li>
+        </ul>
+        <div class="sec-head">📝 Week 3 Role Statement</div>
+        <textarea class="edit-area" style="height:80px" placeholder="用 100–300 字说明你进入 Week 3 团队后能做什么、需要什么队友、能拿出什么 Proof of Work。这是你的组队"名片"。"></textarea>
+        <div class="sec-head">📝 Portfolio Pack 整理</div>
+        <div class="card-template">
+          <div class="card-field"><span class="card-key">主路径方向</span><textarea class="edit-area" style="height:28px" placeholder="Research / Ops / Dev"></textarea></div>
+          <div class="card-field"><span class="card-key">Week 2 完成任务（附链接）</span><textarea class="edit-area" style="height:60px" placeholder="（填写）"></textarea></div>
+          <div class="card-field"><span class="card-key">最大收获</span><textarea class="edit-area" style="height:40px" placeholder="（填写）"></textarea></div>
+        </div>
+        <div class="sec-head">📸 截图 / 链接 / 其他记录</div>
+        <textarea class="edit-area" style="height:60px" placeholder="Portfolio 链接、截图等……"></textarea>
+      </div>
+    </div>
+
+  </div><!-- /level-body w2 -->
+</div><!-- /week2 -->
+
+<div class="px-divider"></div>
+
+<!-- ============================================================ -->
+<!--                    WEEK 3 LEVEL CARD                         -->
+<!-- ============================================================ -->
+<div class="level-card level-w3" id="week3">
+  <div class="level-header" onclick="toggleLevel(this)">
+    <div class="level-meta">
+      <div class="level-num">LEVEL 3</div>
+      <div>
+        <div class="level-title-text">🛡️ Week 3 — Builder Collaboration</div>
+        <div class="level-sub">找到搭子，做出第一个团队 Mini Demo · 组队 → 定义 → 协作 → 展示</div>
+      </div>
+    </div>
+    <div class="level-right">
+      <div class="level-pts" style="color:var(--week3);border-color:var(--week3)">XP × 5 天</div>
+      <div class="toggle-icon">▼</div>
+    </div>
+  </div>
+  <div class="level-body">
+
+    <div style="padding:12px 16px 0">
+      <div class="callout">
+        <span class="callout-icon">🤝</span>
+        Week 3 的目标：让 Research / Ops / Dev Builder 真正组成小队，体验一次完整的「认识彼此 → 定义问题 → 分工协作 → 完成 Mini Demo → 获取反馈」流程，并为 Week 4 Hackathon 找到可以继续合作的队友和项目方向。<strong>Mini Demo 不等于完整产品</strong>——一个可运行的小功能、交互原型或合约 Demo 就够。
+      </div>
+      <div class="week-goals">
+        <div style="font-size:10px;text-transform:uppercase;letter-spacing:0.08em;color:var(--text2);margin-bottom:6px">Week 3 设计目标：</div>
+        <div class="week-goal-item"><span class="week-goal-icon" style="color:var(--week3)">👥</span> 认识不同方向的 Builder，找到 2–5 名互补队友</div>
+        <div class="week-goal-item"><span class="week-goal-icon" style="color:var(--week3)">🎯</span> 共同选择一个具体问题，定义目标用户和最小可验证 Demo</div>
+        <div class="week-goal-item"><span class="week-goal-icon" style="color:var(--week3)">🔀</span> 理解 Research / Ops / Dev 在同一个项目中的分工与依赖关系</div>
+        <div class="week-goal-item"><span class="week-goal-icon" style="color:var(--week3)">🛠</span> 使用 GitHub、Notion、群聊等工具维护任务、决策和进度</div>
+        <div class="week-goal-item"><span class="week-goal-icon" style="color:var(--week3)">🏁</span> 完成一次团队 Mini Demo 展示和同伴反馈</div>
+      </div>
+      <table class="overview-table">
+        <thead><tr><th>Day</th><th>主题</th><th>核心产出</th><th>状态</th></tr></thead>
+        <tbody>
+          <tr><td>Day 1</td><td>认识彼此，找到互补搭子</td><td>Builder Profile + Team Formation Card</td><td><span class="status-badge badge-todo">⬜ 未开始</span></td></tr>
+          <tr><td>Day 2</td><td>从想法中选出一个可做的问题</td><td>Problem & User Card + Mini Demo Scope</td><td><span class="status-badge badge-todo">⬜ 未开始</span></td></tr>
+          <tr><td>Day 3</td><td>Co-build：三类角色一起工作</td><td>三类 Handoff + Decision Log</td><td><span class="status-badge badge-todo">⬜ 未开始</span></td></tr>
+          <tr><td>Day 4</td><td>把 Demo 交给真实的人</td><td>User Test + Feedback Log + Demo Freeze</td><td><span class="status-badge badge-todo">⬜ 未开始</span></td></tr>
+          <tr><td>Day 5</td><td>Mini Demo Day：展示与 Hackathon 去向</td><td>Team Mini Demo + Hackathon Readiness Card</td><td><span class="status-badge badge-todo">⬜ 未开始</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- W3 DAY 1 -->
+    <div class="day-section" id="w3d1">
+      <div class="day-header" onclick="toggleDay(this)">
+        <span class="day-badge day-badge-w3">DAY 1</span>
+        <span class="day-title">Meet Your Builders：认识彼此，找到互补搭子</span>
+        <span class="day-toggle"></span>
+      </div>
+      <div class="day-body">
+        <div class="sec-head">🎯 学习目标</div>
+        <ul class="checklist">
+          <li><span class="px-check" onclick="checkThis(this)"></span> 将 Week 2 Role Statement 转化为简洁的 Builder Profile</li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> 快速了解其他 Builder 的能力与需求</li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> 通过 Idea Pitch 与 Team Matching 找到互补队友</li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> 建立团队沟通空间和基础协作规则</li>
+        </ul>
+        <div class="sec-head">🃏 Builder Profile Card</div>
+        <div class="card-template">
+          <div class="card-field"><span class="card-key">姓名 / ID</span><textarea class="edit-area" style="height:28px" placeholder="（填写）"></textarea></div>
+          <div class="card-field"><span class="card-key">选择方向</span><textarea class="edit-area" style="height:28px" placeholder="Research / Ops / Dev"></textarea></div>
+          <div class="card-field"><span class="card-key">Week 2 Proof of Work</span><textarea class="edit-area" style="height:40px" placeholder="（链接或描述）"></textarea></div>
+          <div class="card-field"><span class="card-key">我可以贡献什么</span><textarea class="edit-area" style="height:40px" placeholder="（填写）"></textarea></div>
+          <div class="card-field"><span class="card-key">我需要的队友</span><textarea class="edit-area" style="height:36px" placeholder="（填写）"></textarea></div>
+          <div class="card-field"><span class="card-key">本周可投入时间</span><textarea class="edit-area" style="height:28px" placeholder="（如：每天 2–3h）"></textarea></div>
+        </div>
+        <div class="sec-head">🗃️ Team Formation Card</div>
+        <div class="card-template">
+          <div class="card-field"><span class="card-key">团队名称</span><textarea class="edit-area" style="height:28px" placeholder="（填写）"></textarea></div>
+          <div class="card-field"><span class="card-key">项目一句话</span><textarea class="edit-area" style="height:28px" placeholder="（填写）"></textarea></div>
+          <div class="card-field"><span class="card-key">成员与角色</span><textarea class="edit-area" style="height:50px" placeholder="姓名 — 角色（Research / Ops / Dev）……"></textarea></div>
+          <div class="card-field"><span class="card-key">沟通工具 & 每日同步时间</span><textarea class="edit-area" style="height:36px" placeholder="（填写）"></textarea></div>
+          <div class="card-field"><span class="card-key">缺少的角色或支持</span><textarea class="edit-area" style="height:36px" placeholder="（填写）"></textarea></div>
+        </div>
+        <div class="sec-head">🛠 今日任务</div>
+        <ul class="checklist">
+          <li><span class="px-check" onclick="checkThis(this)"></span> 任务 1｜Builder Profile Card <span class="pts">+10 XP</span></li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> 任务 2｜Idea Pitch：一句话说明"为谁解决什么问题" <span class="pts">+10 XP</span></li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> 任务 3｜Team Formation Card <span class="pts">+20 XP</span></li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> 任务 4｜Team Working Agreement <span class="pts">+10 XP</span></li>
+        </ul>
+        <div class="sec-head">📸 截图 / 链接 / 其他记录</div>
+        <textarea class="edit-area" style="height:60px" placeholder="组队截图、Team Formation Card 链接等……"></textarea>
+      </div>
+    </div>
+
+    <!-- W3 DAY 2 -->
+    <div class="day-section collapsed" id="w3d2">
+      <div class="day-header" onclick="toggleDay(this)">
+        <span class="day-badge day-badge-w3">DAY 2</span>
+        <span class="day-title">Define Together：从很多想法中选出一个可做的问题</span>
+        <span class="day-toggle"></span>
+      </div>
+      <div class="day-body">
+        <div class="sec-head">🎯 学习目标</div>
+        <ul class="checklist">
+          <li><span class="px-check" onclick="checkThis(this)"></span> 从"我们想做什么"转向"用户遇到了什么问题"</li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> 用 Research / Ops / Dev 三个视角共同检查想法</li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> 把大项目压缩为一周内可完成的 Mini Demo Scope</li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> 明确为什么选择 Monad，以及哪些部分可以 Mock</li>
+        </ul>
+        <div class="sec-head">📋 Problem & User Card</div>
+        <div class="card-template">
+          <div class="card-field"><span class="card-key">目标用户</span><textarea class="edit-area" style="height:28px" placeholder="（填写）"></textarea></div>
+          <div class="card-field"><span class="card-key">具体场景</span><textarea class="edit-area" style="height:40px" placeholder="（填写）"></textarea></div>
+          <div class="card-field"><span class="card-key">核心问题</span><textarea class="edit-area" style="height:36px" placeholder="（填写）"></textarea></div>
+          <div class="card-field"><span class="card-key">当前替代方案</span><textarea class="edit-area" style="height:36px" placeholder="（填写）"></textarea></div>
+          <div class="card-field"><span class="card-key">我们要验证的一个假设</span><textarea class="edit-area" style="height:36px" placeholder="（填写）"></textarea></div>
+          <div class="card-field"><span class="card-key">为什么选择 Monad</span><textarea class="edit-area" style="height:36px" placeholder="（填写）"></textarea></div>
+          <div class="card-field"><span class="card-key">本周不做什么</span><textarea class="edit-area" style="height:36px" placeholder="（填写）"></textarea></div>
+        </div>
+        <div class="sec-head">📐 Mini Demo Scope</div>
+        <div class="card-template">
+          <div class="card-field"><span class="card-key">Must Have（本周必须）</span><textarea class="edit-area" style="height:50px" placeholder="（填写）"></textarea></div>
+          <div class="card-field"><span class="card-key">Nice to Have（有时间再做）</span><textarea class="edit-area" style="height:36px" placeholder="（填写）"></textarea></div>
+          <div class="card-field"><span class="card-key">Not This Week（明确不做）</span><textarea class="edit-area" style="height:36px" placeholder="（填写）"></textarea></div>
+        </div>
+        <div class="sec-head">🗓️ Mini Demo 项目执行排期表</div>
+        <div class="tip-box">✏️ 这是团队每日推进看板，Day 2 填写计划，每天更新进展和阻塞。</div>
+        <table class="data-table">
+          <thead><tr><th>日期</th><th><span class="role-badge research">Research</span></th><th><span class="role-badge ops">Ops</span></th><th><span class="role-badge dev">Dev</span></th><th>今日产出</th><th>阻塞</th><th>状态</th></tr></thead>
+          <tbody>
+            <tr><td>Day 2（今天）</td><td>Problem Card</td><td>活动 Brief</td><td>Dev Plan + Scope</td><td>三个 Card</td><td><textarea class="edit-area" style="height:24px;font-size:9px"></textarea></td><td>⬜ 进行中</td></tr>
+            <tr><td>Day 3</td><td>Product Brief</td><td>Demo Story</td><td>Repo + 骨架</td><td>三类 Handoff</td><td><textarea class="edit-area" style="height:24px;font-size:9px"></textarea></td><td>⬜ 未开始</td></tr>
+            <tr><td>Day 4</td><td>假设验证</td><td>测试邀请</td><td>迭代 + Freeze</td><td>Feedback Log</td><td><textarea class="edit-area" style="height:24px;font-size:9px"></textarea></td><td>⬜ 未开始</td></tr>
+            <tr><td>Day 5</td><td>Pitch 支持</td><td>Demo Day</td><td>Demo 稳定</td><td>Mini Demo + Retro</td><td><textarea class="edit-area" style="height:24px;font-size:9px"></textarea></td><td>⬜ 未开始</td></tr>
+          </tbody>
+        </table>
+        <div class="sec-head">🛠 今日任务</div>
+        <ul class="checklist">
+          <li><span class="px-check" onclick="checkThis(this)"></span> 任务 5｜Problem & User Card <span class="pts">+20 XP</span></li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> 任务 6｜Mini Demo Scope <span class="pts">+20 XP</span></li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> 任务 7｜Monad Fit Card <span class="pts">+10 XP</span></li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> 任务 8｜Team Build Plan <span class="pts">+20 XP</span></li>
+        </ul>
+        <div class="sec-head">📸 截图 / 链接 / 其他记录</div>
+        <textarea class="edit-area" style="height:60px" placeholder="Problem & User Card、Scope 文档链接等……"></textarea>
+      </div>
+    </div>
+
+    <!-- W3 DAY 3 -->
+    <div class="day-section collapsed" id="w3d3">
+      <div class="day-header" onclick="toggleDay(this)">
+        <span class="day-badge day-badge-w3">DAY 3</span>
+        <span class="day-title">Co-build：让研究、运营和开发真正一起工作</span>
+        <span class="day-toggle"></span>
+      </div>
+      <div class="day-body">
+        <div class="sec-head">🎯 学习目标</div>
+        <ul class="checklist">
+          <li><span class="px-check" onclick="checkThis(this)"></span> 从分工名单进入真实协作，交付可以被下一个角色继续使用的中间成果</li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> 使用 AI 辅助整理、开发和沟通，保留人工判断</li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> 尽早暴露阻塞问题，而不是等到最后一天才合并</li>
+        </ul>
+        <div class="callout">全队每天一次 <strong>15 分钟 Stand-up</strong>：昨天完成什么 → 今天做什么 → 遇到什么阻塞 → 需要谁帮助</div>
+        <div class="sec-head">🛠 今日任务</div>
+        <ul class="checklist">
+          <li><span class="px-check" onclick="checkThis(this)"></span> <span class="role-badge research">Research</span> 任务 9｜Research Handoff（Product Brief）<span class="pts">+20 XP</span></li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> <span class="role-badge ops">Ops</span> 任务 10｜Ops Handoff（项目叙事、测试邀请、Landing Page 草稿）<span class="pts">+20 XP</span></li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> <span class="role-badge dev">Dev</span> 任务 11｜Dev Handoff（Repo / 可运行截图 / 完成度 / Known Issues）<span class="pts">+30 XP</span></li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> <span class="role-badge all">全队</span> 任务 12｜Team Decision & AI Log <span class="pts">+20 XP</span></li>
+        </ul>
+        <div class="sec-head">📝 各角色 Handoff 区</div>
+        <div class="card-template">
+          <div class="card-field"><span class="card-key"><span class="role-badge research">Research</span> Product Brief</span><textarea class="edit-area" style="height:80px" placeholder="用户 / 问题 / 竞品 / 机制 / 风险 / 待验证假设……"></textarea></div>
+          <div class="card-field"><span class="card-key"><span class="role-badge ops">Ops</span> 项目叙事 & Landing Page</span><textarea class="edit-area" style="height:60px" placeholder="一句话 / 简介 / 测试邀请文案 / Landing Page 链接……"></textarea></div>
+          <div class="card-field"><span class="card-key"><span class="role-badge dev">Dev</span> Repo & 完成度</span><textarea class="edit-area" style="height:60px" placeholder="Repo 链接 / 当前完成度 / Known Issues……"></textarea></div>
+          <div class="card-field"><span class="card-key">Team Decision Log</span><textarea class="edit-area" style="height:60px" placeholder="关键决定 / 理由 / 证据 / 假设 / AI 辅助与核查……"></textarea></div>
+        </div>
+        <div class="sec-head">📸 截图 / 链接 / 其他记录</div>
+        <textarea class="edit-area" style="height:60px" placeholder="Handoff 文档、Repo、内部 Dry Run 截图……"></textarea>
+      </div>
+    </div>
+
+    <!-- W3 DAY 4 -->
+    <div class="day-section collapsed" id="w3d4">
+      <div class="day-header" onclick="toggleDay(this)">
+        <span class="day-badge day-badge-w3">DAY 4</span>
+        <span class="day-title">Test & Improve：把 Demo 交给真实的人</span>
+        <span class="day-toggle"></span>
+      </div>
+      <div class="day-body">
+        <div class="sec-head">🎯 学习目标</div>
+        <ul class="checklist">
+          <li><span class="px-check" onclick="checkThis(this)"></span> 让团队之外的人第一次接触 Mini Demo</li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> 区分"别人夸我们"与"别人真的完成了核心动作"</li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> 收集可用于改进产品、叙事和技术实现的反馈</li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> 完成 Demo Freeze</li>
+        </ul>
+        <div class="sec-head">🔬 User Test Log</div>
+        <table class="data-table">
+          <thead><tr><th>测试者</th><th>完成核心动作？</th><th>卡住的地方</th><th>原话摘录</th><th>反馈类别</th></tr></thead>
+          <tbody>
+            <tr><td>测试者 1</td><td><textarea class="edit-area" style="height:24px;font-size:9px" placeholder="是/否"></textarea></td><td><textarea class="edit-area" style="height:24px;font-size:9px"></textarea></td><td><textarea class="edit-area" style="height:24px;font-size:9px"></textarea></td><td><textarea class="edit-area" style="height:24px;font-size:9px"></textarea></td></tr>
+            <tr><td>测试者 2</td><td><textarea class="edit-area" style="height:24px;font-size:9px" placeholder="是/否"></textarea></td><td><textarea class="edit-area" style="height:24px;font-size:9px"></textarea></td><td><textarea class="edit-area" style="height:24px;font-size:9px"></textarea></td><td><textarea class="edit-area" style="height:24px;font-size:9px"></textarea></td></tr>
+            <tr><td>测试者 3</td><td><textarea class="edit-area" style="height:24px;font-size:9px" placeholder="是/否"></textarea></td><td><textarea class="edit-area" style="height:24px;font-size:9px"></textarea></td><td><textarea class="edit-area" style="height:24px;font-size:9px"></textarea></td><td><textarea class="edit-area" style="height:24px;font-size:9px"></textarea></td></tr>
+          </tbody>
+        </table>
+        <div class="sec-head">📋 Feedback Log</div>
+        <table class="data-table">
+          <thead><tr><th>反馈内容</th><th>类别</th><th>负责人</th><th>状态</th></tr></thead>
+          <tbody>
+            <tr><td><textarea class="edit-area" style="height:24px;font-size:9px" placeholder="（填写）"></textarea></td><td>Must Fix</td><td><textarea class="edit-area" style="height:24px;font-size:9px"></textarea></td><td>⬜ 待处理</td></tr>
+            <tr><td><textarea class="edit-area" style="height:24px;font-size:9px"></textarea></td><td>Should Fix</td><td><textarea class="edit-area" style="height:24px;font-size:9px"></textarea></td><td></td></tr>
+            <tr><td><textarea class="edit-area" style="height:24px;font-size:9px"></textarea></td><td>Later</td><td><textarea class="edit-area" style="height:24px;font-size:9px"></textarea></td><td></td></tr>
+          </tbody>
+        </table>
+        <div class="sec-head">🛠 今日任务</div>
+        <ul class="checklist">
+          <li><span class="px-check" onclick="checkThis(this)"></span> 任务 13｜User Test（至少 3 名测试者）<span class="pts">+30 XP</span></li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> 任务 14｜Feedback Log <span class="pts">+20 XP</span></li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> 任务 15｜Iteration Evidence（至少一次基于反馈的修改）<span class="pts">+20 XP</span></li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> 任务 16｜Demo Freeze Checklist <span class="pts">+10 XP</span></li>
+        </ul>
+        <div class="sec-head">📸 截图 / 链接 / 其他记录</div>
+        <textarea class="edit-area" style="height:60px" placeholder="User Test 截图、Iteration Evidence 对比图……"></textarea>
+      </div>
+    </div>
+
+    <!-- W3 DAY 5 -->
+    <div class="day-section collapsed" id="w3d5">
+      <div class="day-header" onclick="toggleDay(this)">
+        <span class="day-badge day-badge-w3">DAY 5</span>
+        <span class="day-title">Mini Demo Day：展示、反馈与 Hackathon 去向</span>
+        <span class="day-toggle"></span>
+      </div>
+      <div class="day-body">
+        <div class="sec-head">🎯 学习目标</div>
+        <ul class="checklist">
+          <li><span class="px-check" onclick="checkThis(this)"></span> 用 3 分钟讲清问题、方案、协作过程和实际进度</li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> 诚实区分真实实现、Mock、计划功能和 Known Issues</li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> 接收结构化同伴与 Mentor 反馈</li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> 决定是否继续组队进入 Week 4 Hackathon</li>
+        </ul>
+        <div class="sec-head">🎤 建议展示结构（每组 5 分钟）</div>
+        <div class="code-block">30 秒  ｜ 团队与目标用户
+45 秒  ｜ 用户问题与现有方案
+90 秒  ｜ 现场 Demo 或录屏
+45 秒  ｜ 为什么选择 Monad
+30 秒  ｜ 团队协作与下一步
+60–120 秒｜ 同伴 / Mentor 反馈</div>
+        <div class="sec-head">🛠 今日任务</div>
+        <ul class="checklist">
+          <li><span class="px-check" onclick="checkThis(this)"></span> 任务 17｜Team Mini Demo（可访问 Demo / 录屏 / 交互原型）<span class="pts">+50 XP</span></li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> 任务 18｜3-Minute Pitch <span class="pts">+30 XP</span></li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> 任务 19｜Peer Feedback（至少为 2 个团队提供反馈）<span class="pts">+10 XP</span></li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> 任务 20｜Hackathon Readiness Card <span class="pts">+20 XP</span></li>
+          <li><span class="px-check" onclick="checkThis(this)"></span> 任务 21｜Team Collaboration Retro <span class="pts">+20 XP</span></li>
+        </ul>
+        <div class="sec-head">🎯 Hackathon Readiness Card</div>
+        <div class="card-template">
+          <div class="card-field"><span class="card-key">团队决定</span><textarea class="edit-area" style="height:28px" placeholder="继续 / 调整 / 合并 / 暂停"></textarea></div>
+          <div class="card-field"><span class="card-key">Week 3 已完成</span><textarea class="edit-area" style="height:40px" placeholder="（填写）"></textarea></div>
+          <div class="card-field"><span class="card-key">Demo / Repo 链接</span><textarea class="edit-area" style="height:28px" placeholder="（填写）"></textarea></div>
+          <div class="card-field"><span class="card-key">Week 4 核心目标</span><textarea class="edit-area" style="height:40px" placeholder="（填写）"></textarea></div>
+          <div class="card-field"><span class="card-key">Hackathon Day 1 第一项任务</span><textarea class="edit-area" style="height:36px" placeholder="（填写）"></textarea></div>
+        </div>
+        <div class="sec-head">📋 Team Collaboration Retro</div>
+        <table class="data-table">
+          <thead><tr><th>成员</th><th>我的贡献</th><th>一次协作问题</th><th>一次改进</th><th>希望继续合作的原因</th></tr></thead>
+          <tbody>
+            <tr><td><textarea class="edit-area" style="height:24px;font-size:9px" placeholder="成员 1"></textarea></td><td><textarea class="edit-area" style="height:24px;font-size:9px"></textarea></td><td><textarea class="edit-area" style="height:24px;font-size:9px"></textarea></td><td><textarea class="edit-area" style="height:24px;font-size:9px"></textarea></td><td><textarea class="edit-area" style="height:24px;font-size:9px"></textarea></td></tr>
+            <tr><td><textarea class="edit-area" style="height:24px;font-size:9px" placeholder="成员 2"></textarea></td><td><textarea class="edit-area" style="height:24px;font-size:9px"></textarea></td><td><textarea class="edit-area" style="height:24px;font-size:9px"></textarea></td><td><textarea class="edit-area" style="height:24px;font-size:9px"></textarea></td><td><textarea class="edit-area" style="height:24px;font-size:9px"></textarea></td></tr>
+            <tr><td><textarea class="edit-area" style="height:24px;font-size:9px" placeholder="成员 3"></textarea></td><td><textarea class="edit-area" style="height:24px;font-size:9px"></textarea></td><td><textarea class="edit-area" style="height:24px;font-size:9px"></textarea></td><td><textarea class="edit-area" style="height:24px;font-size:9px"></textarea></td><td><textarea class="edit-area" style="height:24px;font-size:9px"></textarea></td></tr>
+          </tbody>
+        </table>
+        <div class="sec-head">📸 截图 / 链接 / 其他记录</div>
+        <textarea class="edit-area" style="height:60px" placeholder="Mini Demo 链接、Pitch 录屏、Peer Feedback 截图……"></textarea>
+      </div>
+    </div>
+
+  </div><!-- /level-body w3 -->
+</div><!-- /week3 -->
+
+<div class="px-divider"></div>
+
+<!-- ============================================================ -->
+<!--                 TEAM DEMO SHOWCASE AREA                      -->
+<!-- ============================================================ -->
+<div class="level-card" id="demo" style="border-color:var(--accent);box-shadow:4px 4px 0 var(--accent2)">
+  <div class="level-header" onclick="toggleLevel(this)" style="border-left:4px solid var(--accent)">
+    <div class="level-meta">
+      <div class="level-num" style="color:var(--accent);border-color:var(--accent)">FINAL</div>
+      <div>
+        <div class="level-title-text">🏆 团队项目 / Mini Demo 展示区</div>
+        <div class="level-sub">SOP · 执行排期表 · 复盘 · 资源汇总</div>
+      </div>
+    </div>
+    <div class="level-right">
+      <div class="level-pts">🎖 最终展示</div>
+      <div class="toggle-icon">▼</div>
+    </div>
+  </div>
+  <div class="level-body">
+    <div style="padding:16px">
+
+      <div class="sec-head">📌 项目基本信息</div>
+      <div class="card-template">
+        <div class="card-field"><span class="card-key">项目名称</span><textarea class="edit-area" style="height:28px">Sentinel for Safe Execution</textarea></div>
+        <div class="card-field"><span class="card-key">一句话描述</span><textarea class="edit-area" style="height:28px">给 DeFi 用户用的「交易安全助手」— Don't trade naked. 🛡️</textarea></div>
+        <div class="card-field"><span class="card-key">目标用户</span><textarea class="edit-area" style="height:28px">普通 DeFi 交易者，在 Monad 链上做 Swap 的小散户</textarea></div>
+        <div class="card-field"><span class="card-key">Demo 链接 / Repo</span><textarea class="edit-area" style="height:28px">https://github.com/YMH0417/sentinel-for-safe-execution</textarea></div>
+        <div class="card-field"><span class="card-key">团队成员</span><textarea class="edit-area" style="height:36px">Dev A Milli（合约）· Dev B Ni（风险配置）· Dev C Yu（模拟数据）· Dev D Boring（后端）· Dev E Zelll（规则引擎）· 前端 Joy Yu · 设计 酷可可 · 运营 77</textarea></div>
+        <div class="card-field"><span class="card-key">Monad Testnet 合约地址</span><textarea class="edit-area" style="height:28px">（开发中，待部署）</textarea></div>
+      </div>
+
+      <div class="sec-head">📋 项目 SOP（标准操作流程）</div>
+      <table class="data-table">
+        <thead><tr><th>阶段</th><th>负责人</th><th>输入</th><th>输出</th><th>工具 / 平台</th><th>注意事项</th></tr></thead>
+        <tbody>
+          <tr><td>用户研究</td><td><textarea class="edit-area" style="height:24px;font-size:9px"></textarea></td><td>问题假设</td><td>Product Brief</td><td><textarea class="edit-area" style="height:24px;font-size:9px"></textarea></td><td>明确目标用户，区分事实与假设</td></tr>
+          <tr><td>活动策划</td><td><textarea class="edit-area" style="height:24px;font-size:9px"></textarea></td><td>Product Brief</td><td>Space / AMA 方案</td><td><textarea class="edit-area" style="height:24px;font-size:9px"></textarea></td><td>提前确认嘉宾和议程，预留预热时间</td></tr>
+          <tr><td>开发实现</td><td><textarea class="edit-area" style="height:24px;font-size:9px"></textarea></td><td>Dev Plan</td><td>Repo + Demo</td><td><textarea class="edit-area" style="height:24px;font-size:9px"></textarea></td><td>前后端 API 对齐，尽早联调</td></tr>
+          <tr><td>用户测试</td><td><textarea class="edit-area" style="height:24px;font-size:9px"></textarea></td><td>Demo v1</td><td>Feedback Log</td><td><textarea class="edit-area" style="height:24px;font-size:9px"></textarea></td><td>找真实用户，不只找熟人</td></tr>
+          <tr><td>Demo Day</td><td><textarea class="edit-area" style="height:24px;font-size:9px"></textarea></td><td>Demo Freeze</td><td>Pitch + 录屏</td><td><textarea class="edit-area" style="height:24px;font-size:9px"></textarea></td><td>提前录屏备份，防止现场翻车</td></tr>
+        </tbody>
+      </table>
+
+      <div class="sec-head">🗓️ 项目执行排期表</div>
+      <table class="data-table">
+        <thead><tr><th>日期</th><th>任务名称</th><th>负责人</th><th>角色</th><th>截止</th><th>依赖</th><th>状态</th></tr></thead>
+        <tbody>
+          <tr><td>W3 Day 1</td><td>Team Formation Card</td><td>77</td><td><span class="role-badge all">全队</span></td><td>当天</td><td>无</td><td>⬜</td></tr>
+          <tr><td>W3 Day 2</td><td>Problem & User Card</td><td>77</td><td><span class="role-badge research">Res</span></td><td>当天</td><td>无</td><td>⬜</td></tr>
+          <tr><td>W3 Day 2</td><td>Mini Demo Scope</td><td>77</td><td><span class="role-badge all">全队</span></td><td>当天</td><td>Problem Card</td><td>⬜</td></tr>
+          <tr><td>W3 Day 3</td><td>Product Brief / PRD</td><td>77</td><td><span class="role-badge research">Res</span></td><td>当天</td><td>Scope</td><td>⬜</td></tr>
+          <tr><td>W3 Day 3</td><td>Demo 页面 UI</td><td>酷可可</td><td><span class="role-badge ops">Ops</span></td><td>当天</td><td>Brief</td><td>⬜</td></tr>
+          <tr><td>W3 Day 3</td><td>Repo + API 骨架</td><td>Boring</td><td><span class="role-badge dev">Dev</span></td><td>当天</td><td>Dev Plan</td><td>⬜</td></tr>
+          <tr><td>W3 Day 4</td><td>合约部署 + 联调</td><td>Milli + Boring</td><td><span class="role-badge dev">Dev</span></td><td>当天</td><td>合约</td><td>⬜</td></tr>
+          <tr><td>W3 Day 4</td><td>前端接 API</td><td>Joy Yu</td><td><span class="role-badge dev">Dev</span></td><td>当天</td><td>API</td><td>⬜</td></tr>
+          <tr><td>W3 Day 5</td><td>Mini Demo 展示</td><td>77</td><td><span class="role-badge ops">Ops</span></td><td>Demo Day</td><td>全部完成</td><td>⬜</td></tr>
+        </tbody>
+      </table>
+
+      <div class="sec-head">📊 项目复盘表</div>
+      <table class="data-table">
+        <thead><tr><th style="width:35%">复盘维度</th><th>内容</th></tr></thead>
+        <tbody>
+          <tr><td>本周完成了什么</td><td><textarea class="edit-area" style="height:36px;font-size:10px" placeholder="（填写）"></textarea></td></tr>
+          <tr><td>哪些事情做得好</td><td><textarea class="edit-area" style="height:36px;font-size:10px" placeholder="（填写）"></textarea></td></tr>
+          <tr><td>哪些事情可以改进</td><td><textarea class="edit-area" style="height:36px;font-size:10px" placeholder="（填写）"></textarea></td></tr>
+          <tr><td>用户反馈摘要</td><td><textarea class="edit-area" style="height:36px;font-size:10px" placeholder="（填写）"></textarea></td></tr>
+          <tr><td>技术 / 产品 Known Issues</td><td><textarea class="edit-area" style="height:36px;font-size:10px" placeholder="（填写）"></textarea></td></tr>
+          <tr><td>Week 4 最重要的一件事</td><td><textarea class="edit-area" style="height:36px;font-size:10px" placeholder="（填写）"></textarea></td></tr>
+          <tr><td>团队是否继续（继续 / 调整 / 暂停）</td><td><textarea class="edit-area" style="height:28px;font-size:10px" placeholder="（填写）"></textarea></td></tr>
+        </tbody>
+      </table>
+
+      <div class="sec-head">🔗 项目 / Demo 资源链接汇总</div>
+      <div class="card-template">
+        <div class="card-field"><span class="card-key">GitHub Repo</span><textarea class="edit-area" style="height:28px">https://github.com/YMH0417/sentinel-for-safe-execution</textarea></div>
+        <div class="card-field"><span class="card-key">产品文档 Repo</span><textarea class="edit-area" style="height:28px">https://github.com/minzhenw490-pixel/Execution-Safety-Agent</textarea></div>
+        <div class="card-field"><span class="card-key">Figma 原型</span><textarea class="edit-area" style="height:28px">https://www.figma.com/make/SEmVoap0JcSLQbyMcaSBLg/Design-Sentinel-DeFi-App</textarea></div>
+        <div class="card-field"><span class="card-key">Demo Script</span><textarea class="edit-area" style="height:28px">docs/Demo-Script-Sentinel.md（个人仓库）</textarea></div>
+        <div class="card-field"><span class="card-key">飞书任务表</span><textarea class="edit-area" style="height:28px">https://ljpbi24n0poj.jp.larksuite.com/sheets/QqCSsfab6hAjqrtVyw9j2DCVpqd</textarea></div>
+        <div class="card-field"><span class="card-key">Problem Card</span><textarea class="edit-area" style="height:28px">docs/Sentinel-ProblemCard.md（个人仓库）</textarea></div>
+        <div class="card-field"><span class="card-key">Monad Testnet 合约地址</span><textarea class="edit-area" style="height:28px">（开发中，待部署）</textarea></div>
+        <div class="card-field"><span class="card-key">其他文档 / 资料</span><textarea class="edit-area" style="height:60px">PRD-Sentinel-MVP.md · product-framework.md · 会议纪要-20260722.md · 工作流程图 · Agent-Reason文案.md · Demo-Script-Sentinel.md</textarea></div>
+      </div>
+
+    </div><!-- /padding -->
+  </div><!-- /level-body demo -->
+</div><!-- /demo -->
+
+<div class="site-footer">
+  🎮 Web3 Career Build 关卡指南 v1.0 · 用像玩游戏一样追踪你的学习旅程 · 所有记录储存在本地浏览器
+  
+<div class="site-footer2">
+  © 2026 · Design by Cool-CoCo · Copyright，All Rights Reserved
+</div>
+</div>
+
+</div><!-- /container -->
+
+<!-- SCROLL TO TOP -->
+<button class="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">▲ TOP</button>
+
+<script>
+// ============================================================
+//  THEME TOGGLE
+// ============================================================
+function toggleTheme() {
+  const html = document.documentElement;
+  const current = html.getAttribute('data-theme');
+  html.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
+  localStorage.setItem('theme', html.getAttribute('data-theme'));
+}
+// Load saved theme
+(function() {
+  const saved = localStorage.getItem('theme');
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+})();
+
+// ============================================================
+//  LEVEL TOGGLE (Week cards)
+// ============================================================
+function toggleLevel(header) {
+  const card = header.closest('.level-card');
+  card.classList.toggle('open');
+}
+
+// ============================================================
+//  DAY TOGGLE
+// ============================================================
+function toggleDay(header) {
+  const section = header.closest('.day-section');
+  section.classList.toggle('collapsed');
+}
+
+// ============================================================
+//  CHECKBOX INTERACTION
+// ============================================================
+function checkThis(el) {
+  el.classList.toggle('checked');
+  updateProgress();
+  saveState();
+}
+
+// ============================================================
+//  ROLE TABS
+// ============================================================
+function switchTab(btn, panelId) {
+  const container = btn.closest('.day-body, .level-body');
+  // Deactivate all tabs and panels in this context
+  const allTabs = btn.closest('.role-tabs').querySelectorAll('.role-tab');
+  allTabs.forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  // Find parent container to scope panels
+  const parent = btn.closest('.day-section, .day-body, .level-body') || document;
+  // Hide all panels that could be siblings (use id directly)
+  // Get all role panels in nearby scope
+  const allPanels = (btn.closest('.day-section') || btn.closest('.level-body')).querySelectorAll('.role-panel');
+  allPanels.forEach(p => p.classList.remove('active'));
+  const target = document.getElementById(panelId);
+  if (target) target.classList.add('active');
+}
+
+// ============================================================
+//  PROGRESS TRACKING
+// ============================================================
+function updateProgress() {
+  const weeks = [
+    { days: ['w1d1','w1d2','w1d3','w1d4','w1d5'], bar: 'p1', txt: 'p1t' },
+    { days: ['w2d1','w2d2','w2d3','w2d4','w2d5'], bar: 'p2', txt: 'p2t' },
+    { days: ['w3d1','w3d2','w3d3','w3d4','w3d5'], bar: 'p3', txt: 'p3t' },
+  ];
+  weeks.forEach(w => {
+    let done = 0;
+    w.days.forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const checks = el.querySelectorAll('.px-check.checked');
+      const total = el.querySelectorAll('.px-check').length;
+      if (total > 0 && checks.length === total) done++;
+    });
+    const pct = Math.round((done / 5) * 100);
+    const bar = document.getElementById(w.bar);
+    const txt = document.getElementById(w.txt);
+    if (bar) bar.style.width = pct + '%';
+    if (txt) txt.textContent = done + ' / 5 天完成';
+  });
+}
+
+// ============================================================
+//  LOCAL STORAGE PERSISTENCE
+// ============================================================
+function saveState() {
+  // Save checkboxes
+  const checks = document.querySelectorAll('.px-check');
+  const state = [];
+  checks.forEach((c, i) => state.push(c.classList.contains('checked') ? '1' : '0'));
+  localStorage.setItem('checks', state.join(','));
+  // Save textareas
+  const areas = document.querySelectorAll('.edit-area');
+  const texts = [];
+  areas.forEach(a => texts.push(encodeURIComponent(a.value)));
+  localStorage.setItem('texts', texts.join('|||'));
+}
+
+function loadState() {
+  // Load checkboxes
+  const checksData = localStorage.getItem('checks');
+  if (checksData) {
+    const state = checksData.split(',');
+    const checks = document.querySelectorAll('.px-check');
+    checks.forEach((c, i) => {
+      if (state[i] === '1') c.classList.add('checked');
+    });
+  }
+  // Load textareas
+  const textsData = localStorage.getItem('texts');
+  if (textsData) {
+    const texts = textsData.split('|||');
+    const areas = document.querySelectorAll('.edit-area');
+    areas.forEach((a, i) => {
+      if (texts[i] !== undefined) a.value = decodeURIComponent(texts[i]);
+    });
+  }
+  updateProgress();
+}
+
+// Auto-save on textarea input
+document.addEventListener('input', function(e) {
+  if (e.target.classList.contains('edit-area')) {
+    clearTimeout(window._saveTimer);
+    window._saveTimer = setTimeout(saveState, 800);
+  }
+});
+
+// ============================================================
+//  SCROLL TO SECTION
+// ============================================================
+function scrollToWeek(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  // Open if closed
+  if (id !== 'demo' && !el.classList.contains('open')) {
+    el.classList.add('open');
+  }
+  setTimeout(() => {
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 100);
+}
+
+// ============================================================
+//  PIXEL ANIMATION (subtle scanline effect)
+// ============================================================
+function initPixelAnim() {
+  // Animate progress bars on load
+  setTimeout(() => {
+    updateProgress();
+  }, 300);
+}
+
+// ============================================================
+//  INIT
+// ============================================================
+document.addEventListener('DOMContentLoaded', function() {
+  loadState();
+  initPixelAnim();
+  // Animate level cards with stagger
+  const cards = document.querySelectorAll('.level-card');
+  cards.forEach((c, i) => {
+    c.style.opacity = '0';
+    c.style.transform = 'translateY(8px)';
+    setTimeout(() => {
+      c.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+      c.style.opacity = '1';
+      c.style.transform = 'translateY(0)';
+    }, 100 + i * 80);
+  });
+});
+</script>
+</body>
+</html>
