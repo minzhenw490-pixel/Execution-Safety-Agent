@@ -51,13 +51,4 @@
 
 ---
 
-## 参考资料
-
-- 用户调研报告-Sentinel.md（项目仓库 notes/）
-- Sentinel-Product-Market-Brief.md（项目仓库 notes/）
-- Demo-Script-Sentinel.md（项目仓库 docs/）
-- Blowfish / Blockaid 官网
-
----
-
 *📅 Week 3 · Web3 Career Build · 2026*
