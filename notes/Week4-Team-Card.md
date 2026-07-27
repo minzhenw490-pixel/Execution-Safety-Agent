@@ -10,7 +10,7 @@ YMH0417
 
 ## 一句话介绍你的项目
 
-给 DeFi 小白用的交易安全助手。一个运行在 Monad 链上的 Execution Safety Layer，多池报价、双层风控。
+给 DeFi 小白用的交易安全助手
 
 ---
 
