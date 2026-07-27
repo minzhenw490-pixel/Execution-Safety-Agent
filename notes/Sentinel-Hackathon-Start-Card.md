@@ -71,7 +71,7 @@ Monad 以高性能、高频交易著称。链上速度越快，用户做决策�
 | Joy | 前端 | Demo 页面开发、API 对接 |
 | Milli | Dev · 合约 | Monad 测试链合约部署 |
 | Ni | Dev · 风险 | 风险阈值配置 |
-| Yu | Dev · 数据 | 模拟路线数据 |
+| MINGHONG | Dev · 报价 | 多池 route 生成 / 后端 API |
 | Boring | Dev · 后端 | 后端 API 全链路 |
 | Zelll | Dev · 规则引擎 | Agent 规则引擎 |
 
