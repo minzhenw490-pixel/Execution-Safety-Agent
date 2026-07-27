@@ -8,8 +8,9 @@
 
 ## 1. 产品概述
 
-**一句话定位：**
-> 一个运行在 Monad Testnet 上的 Execution Safety Layer。用户 Swap 之前，系统向多个候选池子分别报价，评估 Token Risk 与 Pool Risk，输出 ALLOW / REJECT / FALLBACK，并用大白话告诉用户原因。
+**一句话定位：** 给 DeFi 小白用的交易安全助手
+
+**详细版：** 一个运行在 Monad Testnet 上的 Execution Safety Layer——用户 Swap 之前，系统向多个候选池子分别报价，评估 Token Risk 与 Pool Risk，输出 ALLOW / REJECT / FALLBACK，并用大白话告诉用户原因。
 
 **核心论点：** 最佳报价 ≠ 最佳路线。报价最高的路径不一定是最安全的。
 
