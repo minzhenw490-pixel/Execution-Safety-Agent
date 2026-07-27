@@ -22,7 +22,7 @@
 
 ## 📌 项目介绍（30 秒）
 
-> 「Sentinel——给 DeFi 用户用的交易安全助手。」
+> 「Sentinel——给 DeFi 用户用的交易安全助手。一个运行在 Monad 链上的 Execution Safety Layer，多池报价、双层风控，帮你交易前扫一遍坑。」
 >
 > 停顿一下，亮出 Slogan：
 >
