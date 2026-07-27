@@ -121,7 +121,7 @@
 
 合约部署    Milli     后端 API    Boring
 风险配置    Ni        规则引擎    Zelll
-模拟数据    Yu        前端        Joy Yu
+模拟数据    MINGHONG    前端        Joy
 UI 设计    酷可可     运营/演示   77
 ```
 

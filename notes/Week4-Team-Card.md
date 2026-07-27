@@ -23,7 +23,7 @@ YMH0417
 | Joy Yu | 前端 | Demo 页面开发、API 对接 |
 | Milli | Dev · 合约 | Monad 测试链合约部署 |
 | Ni | Dev · 风险 | 风险阈值配置、安全数据分析 |
-| Yu | Dev · 数据 | 模拟路线数据 |
+| MINGHONG | Dev · 报价 | 模拟路线数据 |
 | Boring | Dev · 后端 | 后端 API 全链路 |
 | Zelll | Dev · 规则引擎 | Agent 规则引擎 |
 

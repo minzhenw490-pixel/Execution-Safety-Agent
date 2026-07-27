@@ -3,122 +3,256 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Sentinel 工作流程图 v3</title>
+<title>Sentinel Week 4 任务依赖流程图</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#050510;font-family:-apple-system,'Inter',sans-serif;display:flex;justify-content:center;padding:30px}
-.container{width:1100px}
-h1{color:#45f59d;font-size:22px;margin-bottom:30px;text-align:center}
-h2{color:#fff;font-size:14px;margin:20px 0 10px}
-.row{display:flex;gap:12px;margin-bottom:12px;align-items:stretch}
-.box{background:#0e0e1a;border:1px solid #1a1a2a;border-radius:10px;padding:14px;flex:1}
-.box-title{color:#45f59d;font-size:11px;font-weight:600;margin-bottom:6px}
-.box-item{color:#d1d5db;font-size:10px;line-height:1.7}
-.highlight{color:#f0c040}
-.warn{color:#ff6666}
-.ok{color:#4ade80}
-.arrow{color:#333;display:flex;align-items:center;justify-content:center;font-size:16px;padding:0 4px}
-.tag{display:inline-block;background:#1a2a1a;color:#45f59d;font-size:9px;padding:2px 6px;border-radius:4px;margin-right:4px}
-.tag-r{background:#2a1a1a;color:#ff6666}
-.tag-y{background:#2a2a1a;color:#f0c040}
+body{background:#f5f5f7;font-family:-apple-system,'Inter',sans-serif;display:flex;justify-content:center;padding:30px}
+.container{width:1000px}
+h1{color:#1a1a2e;font-size:22px;margin-bottom:8px;text-align:center}
+.sub{color:#666;font-size:12px;text-align:center;margin-bottom:30px}
+
+/* Timeline */
+.tl{position:relative;padding-left:40px}
+.tl::before{content:'';position:absolute;left:16px;top:0;bottom:0;width:2px;background:#d0d0d8}
+
+/* Day block */
+.day{margin-bottom:24px;position:relative}
+.day-marker{position:absolute;left:-30px;top:4px;width:24px;height:24px;border-radius:50%;color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.day-d1 .day-marker{background:#0ea86c}
+.day-d2 .day-marker{background:#0891b2}
+.day-d3 .day-marker{background:#7c3aed}
+.day-d4 .day-marker{background:#d97706}
+.day-d5 .day-marker{background:#dc2626}
+
+.day-title{font-size:14px;font-weight:700;color:#333;margin-bottom:8px}
+.day-goal{font-size:11px;color:#666;margin-bottom:10px}
+
+/* Task card */
+.task{background:#fff;border:1px solid #e0e0e8;border-radius:8px;padding:10px 12px;margin-bottom:8px;box-shadow:0 1px 2px rgba(0,0,0,0.04);position:relative}
+.task-owner{font-size:10px;font-weight:600;color:#0ea86c;margin-bottom:2px}
+.task-name{font-size:12px;color:#333;font-weight:600;margin-bottom:3px}
+.task-desc{font-size:10px;color:#666;line-height:1.5}
+
+/* Dependency arrow */
+.dep{font-size:9px;color:#999;margin:4px 0 4px 12px;padding:2px 6px;background:#f0f0f5;border-radius:4px;display:inline-block}
+.dep strong{color:#444}
+
+/* Handoff tag */
+.handoff{display:inline-block;font-size:9px;padding:2px 6px;border-radius:4px;margin-top:4px;font-weight:500}
+.handoff-green{background:#ecfdf5;color:#0ea86c}
+.handoff-blue{background:#eff6ff;color:#0891b2}
+.handoff-yellow{background:#fffbeb;color:#d97706}
+.handoff-red{background:#fef2f2;color:#dc2626}
+
+.arrow-down{text-align:center;color:#bbb;font-size:12px;margin:2px 0}
 </style>
 </head>
 <body>
 <div class="container">
-<h1>🛡️ Sentinel 工作流程 v3（多池报价版）</h1>
+<h1>📋 Sentinel Week 4 任务流程 & 依赖关系</h1>
+<p class="sub">谁先做 → 谁等谁 → 谁交付给谁 → 你按这张图跟进进度</p>
 
-<!-- Layer 1: User Input -->
-<div class="row">
-<div class="box">
-<div class="box-title">👤 用户输入</div>
-<div class="box-item">选择：USDC → GOOD<br>输入金额：100<br>连接 MetaMask 钱包</div>
-</div>
-<div class="arrow">↓</div>
-<div class="box">
-<div class="box-title">📊 参考价</div>
-<div class="box-item">SAFE 池 spot price = 参考基准<br>用于计算报价偏离度<br><span class="box-item ok">不用于执行交易</span></div>
-</div>
-</div>
+<div class="tl">
 
-<div class="arrow" style="text-align:center;margin:-4px 0 8px">↓</div>
+<!-- Day 1 -->
+<div class="day day-d1">
+<div class="day-marker">D1</div>
+<div class="day-title">Day 1 · 冻结报价模型 & Scope</div>
+<div class="day-goal">今天核心：定死 routes[] 格式，所有人进入同一套环境</div>
 
-<!-- Layer 2: Quote Service -->
-<h2>🔁 报价层 · 多池分别报价</h2>
-<div class="row">
-<div class="box">
-<div class="box-title box-item ok">🟢 SAFE 池</div>
-<div class="box-item">报价：99.1 GOOD<br>滑点：0.4%<br>风险评分：12<br>标签：无</div>
-</div>
-<div class="box">
-<div class="box-title box-item warn">🟡 SHALLOW 池</div>
-<div class="box-item">报价：83.12 GOOD<br>滑点：16.8%<br>风险评分：55<br>标签：⚠️ 滑点过高</div>
-</div>
-<div class="box">
-<div class="box-title box-item" style="color:#ff6666">🔴 TOXIC 池</div>
-<div class="box-item">报价：104.8 GOOD<br>滑点：3%<br>风险评分：88<br>标签：❌ 有毒池</div>
-</div>
+<div class="task">
+<div class="task-owner">👤 运营（77）</div>
+<div class="task-name">冻结主演示场景</div>
+<div class="task-desc">定死 4 个演示场景、更新 Demo 脚本、更新任务表</div>
+<div class="handoff handoff-green">👉 通知全队：场景定稿了</div>
 </div>
 
-<div class="arrow" style="text-align:center;margin:-4px 0 8px">↓</div>
-
-<!-- Layer 3: Safety Engine -->
-<h2>🧠 安全引擎 · 双层风险评估</h2>
-<div class="row">
-<div class="box" style="flex:1.5">
-<div class="box-title">🪙 Token Risk 评估</div>
-<div class="box-item">检查代币本身：<br>• 合约权限是否异常<br>• 是否有危险标签<br>• 资产可信度</div>
-</div>
-<div class="box" style="flex:1.5">
-<div class="box-title">🌊 Pool Risk 评估</div>
-<div class="box-item">检查池子状态：<br>• 流动性深度<br>• 滑点是否可接受<br>• 报价是否异常<br>• 历史失败率</div>
-</div>
-<div class="box" style="flex:1">
-<div class="box-title">⚖️ 最终决策</div>
-<div class="box-item"><span class="ok">🟢 放行</span><br><span class="warn">🔴 拦截 + 原因</span><br><span class="highlight">🟡 降级切安全路</span></div>
-</div>
+<div class="task">
+<div class="task-owner">👤 Dev 1（Milli）+ Dev 3（MINGHONG）</div>
+<div class="task-name">冻结 routes[] schema + 合约方案</div>
+<div class="task-desc">定死 /quote 返回的字段、Execution 合约接口、事件定义</div>
+<div class="handoff handoff-blue">👉 交付给全队：API 文档 + 合约接口</div>
 </div>
 
-<div class="arrow" style="text-align:center;margin:-4px 0 8px">↓</div>
-
-<!-- Layer 4: Execution -->
-<h2>⛓️ 链上执行</h2>
-<div class="row">
-<div class="box">
-<div class="box-title">📝 交易执行</div>
-<div class="box-item">调用合约 executeRoute()<br>Monad 测试链<br>Gas 消耗记录</div>
-</div>
-<div class="box">
-<div class="box-title">📋 事件记录</div>
-<div class="box-item">RouteEvaluated<br>RouteExecuted / RouteRejected<br>ConfigUpdated</div>
-</div>
-<div class="box">
-<div class="box-title">📊 前端展示</div>
-<div class="box-item">参考价 · 候选路径 · 决策<br>时间线 · Dashboard<br>NFT 勋章</div>
-</div>
+<div class="task">
+<div class="task-owner">👤 Dev 5（Boring）</div>
+<div class="task-name">建立地址表 & 环境配置</div>
+<div class="task-desc">建好地址总表、RPC 配置、各人私钥/测试币领取指引</div>
+<div class="handoff handoff-yellow">👉 交付给全队：地址表 + 环境指引</div>
 </div>
 
-<div class="arrow" style="text-align:center;margin:16px 0 8px">✦</div>
-
-<!-- Bottom: Core Principle -->
-<div class="row">
-<div class="box" style="border-color:#f0c040;text-align:center">
-<div class="box-title highlight">⭐ 核心论点</div>
-<div class="box-item" style="font-size:12px;color:#f0c040;font-weight:600">
-最佳报价 ≠ 最佳路线<br>
-报价最高的路径不一定是最安全的
-</div>
-</div>
+<div class="dep"><strong>✨ Day 1 验收：</strong>routes[] 格式定死，地址表可用了，大家知道找谁</div>
 </div>
 
-<!-- Tags -->
-<div style="margin-top:20px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
-<span class="tag">3 个代币：GOOD / BAD / BAIT</span>
-<span class="tag">3 个池子：SAFE / SHALLOW / TOXIC</span>
-<span class="tag-r">风险拆为两层：Token + Pool</span>
-<span class="tag-y">不选报价最高的</span>
+<!-- Day 2 -->
+<div class="day day-d2">
+<div class="day-marker">D2</div>
+<div class="day-title">Day 2 · 资产 & 池子 & 报价成型</div>
+<div class="day-goal">今天核心：链上东西有了，route list 能跑了</div>
+
+<div class="task">
+<div class="task-owner">👤 Dev 2（Ni）→ 先做</div>
+<div class="task-name">部署 3 个 Token + 3 个 Pool</div>
+<div class="task-desc">GOOD / BAD / BAIT 部署到 Monad 测试链<br>SAFE / SHALLOW / TOXIC 池子搭建</div>
+<div class="handoff handoff-green">👉 交付给 Dev 3：Token 地址 + Pool 地址 + 初始储备</div>
 </div>
 
-<p style="color:#333;font-size:10px;text-align:center;margin-top:16px">v3 · Week 4 多池报价版 · 2026-07-28</p>
+<div class="arrow-down">↓ 等 Dev 2 给地址</div>
+
+<div class="task">
+<div class="task-owner">👤 Dev 3（MINGHONG）→ 等 Dev 2</div>
+<div class="task-name">实现 /quote → 返回 routes[]</div>
+<div class="task-desc">读池子数据 → 算每条 route 报价/滑点/评分 → 返回 route list</div>
+<div class="handoff handoff-blue">👉 交付给前端 + Dev 4：/quote 接口能跑了</div>
+</div>
+
+<div class="arrow-down">↓ 同时并行</div>
+
+<div class="task">
+<div class="task-owner">👤 Dev 4（Zelll）</div>
+<div class="task-name">规则引擎升级：Token + Pool 双层风险</div>
+<div class="task-desc">从单一 risk score 拆成 token risk + pool risk<br>固定 ALLOW / REJECT / FALLBACK 逻辑</div>
+<div class="handoff handoff-yellow">👉 交付给前端：evaluate 接口能跑了</div>
+</div>
+
+<div class="dep"><strong>✨ Day 2 验收：</strong>至少 2 个池子在链上，/quote 能返回 3 条 route</div>
+</div>
+
+<!-- Day 3 -->
+<div class="day day-d3">
+<div class="day-marker">D3</div>
+<div class="day-title">Day 3 · 全链路联调</div>
+<div class="day-goal">今天核心：前端 + 后端 + 链上打通，三类结果都能出现</div>
+
+<div class="task">
+<div class="task-owner">👤 前端（Joy）→ 等 Dev 3 + Dev 4 给接口</div>
+<div class="task-name">页面接入真实 API</div>
+<div class="task-desc">展示参考价 → routes[] 列表 → 决策结果 → 时间线<br>Safe / Unsafe 模式切换</div>
+</div>
+
+<div class="arrow-down">↓</div>
+
+<div class="task">
+<div class="task-owner">👤 Dev 5（Boring）</div>
+<div class="task-name">联调排查 + QA</div>
+<div class="task-desc">检查每一条 route 数据对不对<br>跑三大场景：正常执行 / 拒绝 / fallback<br>记录 bug 清单</div>
+<div class="handoff handoff-red">👉 交付给运营：QA 报告 + 清单</div>
+</div>
+
+<div class="arrow-down">↓</div>
+
+<div class="task">
+<div class="task-owner">👤 运营（77）→ 等 Dev 5 QA 结果</div>
+<div class="task-name">确认 Demo 路径</div>
+<div class="task-desc">根据 QA 结果，确定哪条路径最稳、哪条作备份</div>
+</div>
+
+<div class="dep"><strong>✨ Day 3 验收：</strong>三类结果都能出现，默认 Demo 路径确定</div>
+</div>
+
+<!-- Day 4 -->
+<div class="day day-d4">
+<div class="day-marker">D4</div>
+<div class="day-title">Day 4 · Demo 打磨 & 材料</div>
+<div class="day-goal">今天核心：能跑 → 能讲 → 能录</div>
+
+<div class="task">
+<div class="task-owner">👤 设计（酷可可）</div>
+<div class="task-name">锁版 UI 素材 + 架构图</div>
+<div class="task-desc">Route Card 状态系统定稿、导出所有素材给前端</div>
+<div class="handoff handoff-green">👉 交付给前端：最终 UI 素材</div>
+</div>
+
+<div class="task">
+<div class="task-owner">👤 运营（77）</div>
+<div class="task-name">README + Deck 文案 + 录屏</div>
+<div class="task-desc">写 README、Pitch Deck 文案、录屏 Demo</div>
+</div>
+
+<div class="dep"><strong>✨ Day 4 验收：</strong>90 秒讲解成立、录屏试跑 ok</div>
+</div>
+
+<!-- Day 5 -->
+<div class="day day-d5">
+<div class="day-marker">D5</div>
+<div class="day-title">Day 5 · 封版 & 提交</div>
+<div class="day-goal">今天核心：锁一切，录正式版本，提交</div>
+
+<div class="task">
+<div class="task-owner">👤 Dev 1（Milli）</div>
+<div class="task-name">锁合约地址、锁部署脚本</div>
+</div>
+
+<div class="task">
+<div class="task-owner">👤 Dev 5（Boring）</div>
+<div class="task-name">最终回归测试</div>
+<div class="task-desc">连续跑 2 次完整 Demo 不翻车</div>
+</div>
+
+<div class="task">
+<div class="task-owner">👤 运营（77）</div>
+<div class="task-name">正式录屏 + 提交</div>
+</div>
+
+<div class="dep"><strong>✨ Day 5 验收：</strong>项目可对外展示、提交物齐全</div>
+</div>
+
+</div>
+<!-- End timeline -->
+
+<!-- Summary: Dependencies -->
+<div style="margin-top:30px;padding:16px;background:#fff;border:1px solid #e0e0e8;border-radius:10px">
+<h2 style="font-size:13px;color:#333;margin-bottom:10px">🔗 谁等谁（依赖关系一览）</h2>
+<table style="width:100%;font-size:11px;border-collapse:collapse">
+<tr style="border-bottom:1px solid #eee">
+<th style="text-align:left;padding:6px 8px;color:#666;font-weight:600">等待方</th>
+<th style="text-align:left;padding:6px 8px;color:#666;font-weight:600">等谁</th>
+<th style="text-align:left;padding:6px 8px;color:#666;font-weight:600">等什么</th>
+<th style="text-align:left;padding:6px 8px;color:#666;font-weight:600">预期时间</th>
+</tr>
+<tr style="border-bottom:1px solid #f0f0f5">
+<td style="padding:6px 8px">Dev 3（报价）</td>
+<td style="padding:6px 8px">Dev 2（池子）</td>
+<td style="padding:6px 8px">Token + Pool 地址</td>
+<td style="padding:6px 8px">Day 2 上午</td>
+</tr>
+<tr style="border-bottom:1px solid #f0f0f5">
+<td style="padding:6px 8px">前端</td>
+<td style="padding:6px 8px">Dev 3 + Dev 4</td>
+<td style="padding:6px 8px">/quote + /evaluate 接口</td>
+<td style="padding:6px 8px">Day 2 下午 ~ Day 3</td>
+</tr>
+<tr style="border-bottom:1px solid #f0f0f5">
+<td style="padding:6px 8px">运营（录屏）</td>
+<td style="padding:6px 8px">Dev 5</td>
+<td style="padding:6px 8px">QA 确认 Demo 路径稳定</td>
+<td style="padding:6px 8px">Day 3 晚 ~ Day 4</td>
+</tr>
+<tr>
+<td style="padding:6px 8px">运营（提交）</td>
+<td style="padding:6px 8px">所有人</td>
+<td style="padding:6px 8px">地址表、合约 hash、录屏、文案</td>
+<td style="padding:6px 8px">Day 5</td>
+</tr>
+</table>
+</div>
+
+<!-- Quick reference -->
+<div style="margin-top:16px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
+<span style="font-size:10px;color:#666">👤 运营（77）追进度</span>
+<span style="font-size:10px;color:#666">|</span>
+<span style="font-size:10px;color:#666">Dev 1 Milli：合约</span>
+<span style="font-size:10px;color:#666">|</span>
+<span style="font-size:10px;color:#666">Dev 2 Ni：Token/Pool</span>
+<span style="font-size:10px;color:#666">|</span>
+<span style="font-size:10px;color:#666">Dev 3 MINGHONG：报价</span>
+<span style="font-size:10px;color:#666">|</span>
+<span style="font-size:10px;color:#666">Dev 4 Zelll：规则引擎</span>
+<span style="font-size:10px;color:#666">|</span>
+<span style="font-size:10px;color:#666">Dev 5 Boring：QA</span>
+</div>
+
+<p style="color:#999;font-size:10px;text-align:center;margin-top:20px">v1 · Week 4 任务依赖图 · 按这张图跟进进度，每天问卡在哪一步</p>
 </div>
 </body>
 </html>

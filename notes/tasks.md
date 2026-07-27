@@ -10,10 +10,10 @@
 | 角色 | 人员 | 主要方向 |
 |------|------|---------|
 | 🎨 设计 | 酷可可 | UI/UX 设计 |
-| 💻 前端 | Joy Yu | 前端开发 |
+| 💻 前端 | Joy | 前端开发 |
 | 🔗 Dev A | Milli | 链上执行（VaultExecution） |
 | ⚙️ Dev B | Ni | 风险配置（Risk Config） |
-| 📊 Dev C | Yu | 模拟数据（Mock Route） |
+| Dev C | MINGHONG | 多池 route 生成 / 报价数据 |
 | 🔧 Dev D | Boring | 后端服务（Orchestration） |
 | 🧠 Dev E | Zelll | Agent 规则引擎 |
 | 📢 运营 | 77 | 产品运营 & 项目管理 |
@@ -32,7 +32,7 @@
 | 🎨 设计 (酷可可) | 导出最终素材（封面图/框图/截图） | 周日 | 运营 | 待办 | UI/UX 设计 |
 | 🎨 设计 (酷可可) | 设计 4 级 NFT 勋章视觉（铜牌/银牌/金牌/钻石探员） | 周五 | 前端 | 待办 | UI/UX 设计 |
 | 🎨 设计 (酷可可) | 设计 Profile 页勋章展示区 + NFT 详情弹窗 | 周六 | 前端 | 待办 | UI/UX 设计 |
-| 💻 前端 (Joy Yu) | 初始化 React+Vite 前端项目 | 周四 | — | 待办 | 前端开发 |
+| 💻 前端 (Joy) | 初始化 React+Vite 前端项目 | 周四 | — | 待办 | 前端开发 |
 | 💻 前端 | 写出单页布局骨架 | 周四 | 设计 | 待办 | 前端开发 |
 | 💻 前端 | 接上真实 /quote /evaluate /execute | 周五 | Dev D | 待办 | 前端开发 |
 | 💻 前端 | 展示 risk score、decision、reason | 周五 | Dev E | 待办 | 前端开发 |
@@ -40,9 +40,9 @@
 | 💻 前端 | Safe Mode / Unsafe Mode 切换 | 周六 | — | 待办 | 前端开发 |
 | 💻 前端 | 修UI阻塞 + 固定 demo 默认输入 | 周六 | — | 待办 | 前端开发 |
 | 💻 前端 | 最后 bug 修复 + 锁定录屏版本 | 周日 | 运营 | 待办 | 前端开发 |
-| 💻 前端 (Joy Yu) | 开发安全交易计数逻辑 + 里程碑检测 | 周五 | Dev D | 待办 | 前端开发 |
-| 💻 前端 (Joy Yu) | 开发 Profile 页 + NFT 勋章墙展示 | 周六 | 设计 | 待办 | 前端开发 |
-| 💻 前端 (Joy Yu) | 开发 NFT 详情弹窗 + mint 事件对接 | 周日 | Dev D | 待办 | 前端开发 |
+| 💻 前端 (Joy) | 开发安全交易计数逻辑 + 里程碑检测 | 周五 | Dev D | 待办 | 前端开发 |
+| 💻 前端 (Joy) | 开发 Profile 页 + NFT 勋章墙展示 | 周六 | 设计 | 待办 | 前端开发 |
+| 💻 前端 (Joy) | 开发 NFT 详情弹窗 + mint 事件对接 | 周日 | Dev D | 待办 | 前端开发 |
 | 🔗 Dev A (Milli) | 初始化合约项目 | 周四 | — | 待办 | 链上执行 |
 | 🔗 Dev A | 写 VaultExecution.sol 骨架 + 定义 executeRoute() | 周四 | Dev D | 待办 | 链上执行 |
 | 🔗 Dev A | 完成 executeRoute() 最小实现 | 周五 | Dev D | 待办 | 链上执行 |
@@ -53,7 +53,7 @@
 | ⚙️ Dev B | 支持 profile 切换（normal/conservative） | 周五 | Dev E | 待办 | 风险配置 |
 | ⚙️ Dev B | 固化默认值 + 参数翻译成自然语言 | 周六 | 运营 | 待办 | 风险配置 |
 | ⚙️ Dev B | 锁 risk config 不再改阈值 | 周日 | — | 待办 | 风险配置 |
-| 📊 Dev C (Yu) | 写出 3 条 route 样本初稿 + 预期 decision | 周四 | Dev E | 待办 | 模拟数据 |
+| 📊 Dev C (MINGHONG) | 写出 3 条 route 样本初稿 + 预期 decision | 周四 | Dev E | 待办 | 模拟数据 |
 | 📊 Dev C | 完成正式样本（route-a ALLOW / route-b REJECT / route-c FALLBACK） | 周五 | Dev D | 待办 | 模拟数据 |
 | 📊 Dev C | 冻结 route 数据 + 录屏专用 demo route 集 | 周六 | 运营 | 待办 | 模拟数据 |
 | 📊 Dev C | 锁 demo route 数据集 + 场景说明文档 | 周日 | 全队 | 待办 | 模拟数据 |
