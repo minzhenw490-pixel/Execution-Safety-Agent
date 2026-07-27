@@ -3,6 +3,8 @@
 > **Don't trade naked.**
 >
 > 给 DeFi 小白用的交易安全助手。发交易之前，先帮你扫一遍有没有坑。
+>
+> **详细版：** 一个运行在 Monad Testnet 上的 Execution Safety Layer——多池报价、双层风险评估，决定放行或拦截
 
 ---
 
