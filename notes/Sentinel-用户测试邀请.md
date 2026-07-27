@@ -4,7 +4,7 @@
 
 ## 一句话介绍
 
-> 给 DeFi 用户用的交易安全助手。一个运行在 Monad 链上的 Execution Safety Layer，多池报价、双层风控 — 发交易之前，先帮你扫一遍有没有坑。
+> 给 DeFi 小白用的交易安全助手。一个运行在 Monad 链上的 Execution Safety Layer，多池报价、双层风控 — 发交易之前，先帮你扫一遍有没有坑。
 
 ---
 
@@ -71,7 +71,7 @@ Sentinel 是一个基于 Monad 链的交易安全工具。你在做 Swap 之前�
 | Slogan | Don't trade naked. |
 | 链 | Monad 测试链 |
 | 团队 | YMH0417 |
-| 定位 | 给 DeFi 用户用的交易安全助手。一个运行在 Monad 链上的 Execution Safety Layer，多池报价、双层风控 |
+| 定位 | 给 DeFi 小白用的交易安全助手。一个运行在 Monad 链上的 Execution Safety Layer，多池报价、双层风控 |
 
 ---
 

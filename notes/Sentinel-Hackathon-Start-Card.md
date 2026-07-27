@@ -7,7 +7,7 @@
 | 项目 | 内容 |
 |------|------|
 | **项目名称** | Sentinel for Safe Execution |
-| **一句话介绍** | 给 DeFi 用户用的交易安全助手。一个运行在 Monad 链上的 Execution Safety Layer，多池报价、双层风控 |
+| **一句话介绍** | 给 DeFi 小白用的交易安全助手。一个运行在 Monad 链上的 Execution Safety Layer，多池报价、双层风控 |
 | **目标用户** | 普通 DeFi 用户，尤其是链上交易新手 |
 | **想解决的问题** | 用户做 Swap 之前，不知道哪条路径是安全的，等亏了才知道踩坑了 |
 
