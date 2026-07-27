@@ -1,75 +1,121 @@
 # 🛡️ Sentinel for Safe Execution
 
-> 给 DeFi 用户用的「交易安全助手」  
-> **Don't trade naked. 🛡️**
-
-**内部共识：** 我们不是帮用户更贪心，而是帮用户**避免错误执行**。
-
----
-
-## 📦 Demo 展示文档
-
-| 文件 | 说明 |
-|------|------|
-| `docs/PRD-Sentinel-MVP.md` | 产品需求文档 |
-| `docs/product-framework.md` | 产品框架方案 |
-| `docs/Demo-Script-Sentinel.md` | Demo 脚本（2 分钟版） |
-| `docs/Sentinel-ProblemCard.md` | Problem & Mini Demo 卡片 |
-| `docs/Sentinel-工作流程图.html` | 项目工作流程图（打开浏览器看） |
-| `docs/Agent-Reason文案.md` | Agent 风险提示文案定稿 |
-
----
-
-## 🎬 Demo Script
-
-**30 秒版（电梯演讲）：**
-> Sentinel 是一个交易安全层。用户在 Swap 之前，Agent 自动检查路径风险，输出放行、拦截或降级，帮普通 DeFi 用户避开异常流动性池。
-
-**90 秒版（完整 Demo）：**
-> 详见 [Demo-Script-Sentinel.md](./docs/Demo-Script-Sentinel.md)
-
----
-
-## 🎨 设计交付
-
-- **Figma 原型：** [Design Sentinel DeFi App](https://www.figma.com/make/SEmVoap0JcSLQbyMcaSBLg/Design-Sentinel-DeFi-App)
-- **页面文案审核：** 进行中
-- **Agent reason 文案：** ✅ 已定稿
-
----
-
-## 📋 进度追踪
-
-| 模块 | 状态 |
-|------|------|
-| 产品文档 | ✅ 已完成 |
-| Demo 脚本 | ✅ 已完成 |
-| Problem Card | ✅ 已完成 |
-| 工作流程图 | ✅ 已完成 |
-| Agent reason 文案 | ✅ 已定稿 |
-| 页面文案收口 | ⏳ 进行中 |
-| 录屏与提交物 | ⏳ 周日 |
-
----
-
-## 📁 项目笔记（内部记录）
-
-日常会议纪要、团队协作规则、任务备份等存放在 `notes/` 目录下。
-- `notes/会议纪要-20260722.md`
-- `notes/团队脑暴会议记录.md`
-- `notes/组建团队并建立协作规则.md`
-- `notes/Ops Builder-用户测试计划.md`
-
----
-
-## 🛡️ Slogan
-
 > **Don't trade naked.**
+>
+> 给 DeFi 用户用的交易安全助手 —— 发交易之前，先帮你扫一遍有没有坑。
 
 ---
 
-## 👤 关于
+## 一句话定位
 
-**运营 & PM：77**
+一个运行在 **Monad Testnet** 上的 Execution Safety Layer：
 
-本仓库用于存放 Sentinel 的产品文档、Demo 脚本和项目进度管理材料。
+当用户用 USDC 进行 Swap 时，系统向多个候选池子获取报价，形成 `routes[]`，再评估 Token Risk 与 Pool Risk，最终决定 **ALLOW / REJECT / FALLBACK**。
+
+---
+
+## 问题
+
+| 问题 | 说明 |
+|------|------|
+| 选池难 | 同样的交易对，不同池子报价不同，新手不知道选哪个 |
+| 报价陷阱 | 报价最高的池子不一定安全——可能是假深度/有毒池 |
+| 事后才知道 | 现有安全工具只在出事之后报警，不能在交易前拦截 |
+| 看不懂 | 钱包提示全是技术术语，普通用户看不懂 |
+
+---
+
+## 方案
+
+```
+用户输入 Swap
+    ↓
+向多个池子分别报价 → 返回 routes[]
+    ↓
+Token Risk 评估（代币本身有没有问题）
+Pool Risk 评估（池子深度/滑点/报价是否异常）
+    ↓
+🟢 ALLOW   → 安全路径，放行
+🔴 REJECT  → 有风险，拦截 + 大白话原因
+🟡 FALLBACK → 自动切到安全路径
+    ↓
+交易执行 + 事件记录
+```
+
+### 核心论点
+
+**最佳报价 ≠ 最佳路线**
+
+报价最高的路径不一定是最安全的。Sentinel 不只比价格，还比风险。
+
+---
+
+## 演示场景
+
+| # | 场景 | 预期决策 | 说明 |
+|:-:|------|:--------:|------|
+| 1 | USDC → GOOD @ SAFE Pool | ✅ ALLOW | 正常交易，系统不误伤 |
+| 2 | USDC → GOOD @ SHALLOW Pool | ⚠️ 展示问题 | 报价真实但滑点高，提示用户 |
+| 3 | USDC → GOOD @ TOXIC Pool | 🔴 REJECT → 🟡 FALLBACK | 表面报价高，但池子有毒，切安全路 |
+| 4 | USDC → BAD @ SAFE Pool | 🔴 REJECT | 池子正常但代币本身有问题 |
+
+---
+
+## 风险模型
+
+### Token Risk（代币层）
+- 合约权限是否异常
+- 是否有风险标签
+- 资产可信度
+
+### Pool Risk（池子层）
+- 流动性深度
+- 滑点是否可接受
+- 报价是否异常偏离参考价
+- 历史失败率
+
+---
+
+## 技术架构
+
+```
+前端 (React + Vite)
+    ↓ 调 API
+报价服务 (/quote → 返回 routes[])
+安全引擎 (/evaluate → 返回 decision)
+执行层 (/execute → 链上交易)
+事件层 (/events → 时间线)
+    ↓
+链上 (Solidity · Monad Testnet)
+```
+
+---
+
+## 团队
+
+| 角色 | 成员 | 方向 |
+|------|------|------|
+| 🎨 设计 | 酷可可 | UI/UX 设计 |
+| 💻 前端 | Joy | Demo 页面开发 |
+| 🔗 Dev A | Milli | 合约部署 |
+| ⚙️ Dev B | Ni | 风控配置 + Token/Pool 搭建 |
+| 🔧 Dev C | MINGHONG | 报价后端 + API |
+| 🔧 Dev D | Boring | 后端 API + QA |
+| 🧠 Dev E | Zelll | 规则引擎 |
+| 📢 运营 | 77 | 产品文档 + 演示 |
+
+---
+
+## 部署
+
+- **链：** Monad Testnet
+- **代币：** GOOD / BAD / BAIT（自部署 ERC20）
+- **池子：** SAFE / SHALLOW / TOXIC
+
+---
+
+## 链接
+
+- GitHub: [github.com/YMH0417/sentinel-for-safe-execution](https://github.com/YMH0417/sentinel-for-safe-execution)
+- Demo Video: （待补充）
+- Pitch Deck: （待补充）
